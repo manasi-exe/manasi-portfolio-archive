@@ -251,7 +251,7 @@ function resizeBoot(){ bootCanvas.width=window.innerWidth; bootCanvas.height=win
 resizeBoot(); window.addEventListener("resize",resizeBoot);
 
 const loadingPhrases=["collecting mushrooms…","watering pixel plants…","loading sunshine…","charging star power…","brewing potions…","feeding pixel birds…","polishing trophies…","almost there…"];
-const bootClouds=Array.from({length:6},(_,i)=>({x:(i*180+Math.random()*100)%1200,y:30+Math.random()*120,w:48+Math.random()*80,speed:0.25+Math.random()*0.3,tier:i<3?'far':'near'}));
+const bootClouds=Array.from({length:9},(_,i)=>({x:(i*170+Math.random()*80)%1400,y:18+Math.random()*110,w:90+Math.random()*110,speed:0.28+Math.random()*0.35,tier:i<5?'far':'near'}));
 const bootPlatforms=[{x:120,y:0.60,tiles:4},{x:300,y:0.50,tiles:3},{x:480,y:0.65,tiles:5},{x:680,y:0.55,tiles:3},{x:860,y:0.60,tiles:4},{x:1050,y:0.50,tiles:3}];
 const coinBlocks=[{x:160,yR:0.48},{x:340,yR:0.40},{x:560,yR:0.52},{x:740,yR:0.44},{x:920,yR:0.48}];
 const bootTrees=[{x:60,size:1.0},{x:240,size:1.3},{x:420,size:0.9},{x:600,size:1.2},{x:780,size:1.0},{x:960,size:1.1},{x:1100,size:0.9}];
@@ -276,11 +276,11 @@ function drawBootBg(){
   const skyC=bootCtx.createLinearGradient(0,0,0,my+mr);
   skyC.addColorStop(0,'#0D0628');skyC.addColorStop(0.45,'#1E1050');skyC.addColorStop(0.8,'#122818');
   bootCtx.fillStyle=skyC;bootCtx.beginPath();bootCtx.arc(mx+mr*0.58,my,mr*0.88,0,Math.PI*2);bootCtx.fill();}
-  // Clouds
-  bootCtx.fillStyle="rgba(255,255,255,0.12)";
-  bootClouds.filter(c=>c.tier==='far').forEach(c=>{const cw=Math.floor(c.w/8);[[0,1,cw],[1,0,cw+2],[1,2,cw+2],[2,1,cw]].forEach(([dx,dy,w])=>bootCtx.fillRect(c.x+dx*8,c.y+dy*8,w*8,8));c.x-=c.speed*0.5;if(c.x+c.w<0)c.x=W+20;});
-  bootCtx.fillStyle="rgba(255,255,255,0.22)";
-  bootClouds.filter(c=>c.tier==='near').forEach(c=>{const cw=Math.floor(c.w/8);[[0,1,cw],[1,0,cw+2],[1,2,cw+2],[2,1,cw]].forEach(([dx,dy,w])=>bootCtx.fillRect(c.x+dx*8,c.y+dy*8,w*8,8));c.x-=c.speed;if(c.x+c.w<0)c.x=W+20;});
+  // Clouds — same puffy ellipse style as main background
+  bootCtx.fillStyle="rgba(200,210,255,0.18)";
+  bootClouds.filter(c=>c.tier==='far').forEach(c=>{drawBgCloud(bootCtx,c.x,c.y,c.w);c.x-=c.speed*0.5;if(c.x+c.w<0)c.x=W+20;});
+  bootCtx.fillStyle="rgba(220,225,255,0.28)";
+  bootClouds.filter(c=>c.tier==='near').forEach(c=>{drawBgCloud(bootCtx,c.x,c.y,c.w);c.x-=c.speed;if(c.x+c.w<0)c.x=W+20;});
   // Platforms
   bootPlatforms.forEach(pl=>drawBootPlatform(bootCtx,pl.x%W,H*pl.y,pl.tiles));
   // Coin blocks

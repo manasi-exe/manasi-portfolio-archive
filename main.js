@@ -1244,7 +1244,7 @@ function renderQuestMap(tab){
   ctx.fillStyle=vig;ctx.fillRect(0,0,W,H);
 
   // ── TITLE BANNER ─────────────────────────────────────────────
-  const tabNames={research:"RESEARCH QUESTS",multimedia:"MULTIMEDIA VAULT",blog:"BLOG CHRONICLES",resources:"RESOURCE VAULT"};
+  const tabNames={research:"RESEARCH QUESTS",multimedia:"MULTIMEDIA VAULT",blog:"BLOG CHRONICLES",resources:"RESOURCE VAULT",features:"FEATURES & PRESS"};
   const titleW=260,titleX=(W-titleW)/2,titleY=22;
   ctx.fillStyle='rgba(200,165,90,0.40)';ctx.fillRect(titleX-8,titleY-2,titleW+16,26);
   ctx.strokeStyle='rgba(160,120,50,0.55)';ctx.lineWidth=1.5;ctx.strokeRect(titleX-8,titleY-2,titleW+16,26);
@@ -1307,7 +1307,7 @@ function renderQuestMap(tab){
     card.innerHTML='<div class="lc-num">#'+(i+1)+'</div>'
       +imgTag
       +'<div class="lc-title">'+item.title+'</div>'
-      +'<div class="lc-tags">'+item.tags.map(t=>'<span class="tag">'+t+'</span>').join('')+'</div>'
+      +'<div class="lc-tags">'+((item.tags||[]).map(t=>'<span class="tag">'+t+'</span>')).join('')+'</div>'
       +'<p class="lc-desc">'+mdToHtml(item.desc)+'</p>'
       +dateStr
       +'<div class="lc-status" style="color:'+(STATUS_COLORS[item.status]||'#604090')+'">● '+item.status+'</div>'

@@ -269,6 +269,9 @@ body {
   text-decoration: underline;
   text-underline-offset: 3px;
   cursor: none !important;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 10;
 }
 .mailto-link:hover { color: var(--peach); }
 
@@ -980,6 +983,18 @@ body {
   0%   { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
   60%  { transform: translateX(-50%) translateY(-60px) scale(1.2); opacity: 1; }
   100% { transform: translateX(-50%) translateY(20px) scale(0.6); opacity: 0; }
+}
+
+/* ---- NETLIFY GHOST FORM (off-screen, detectable by deploy scanner) ---- */
+.netlify-form-ghost {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ---- FOOTER ---- */

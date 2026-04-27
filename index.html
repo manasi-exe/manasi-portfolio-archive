@@ -324,20 +324,10 @@
     </div>
   </div>
 
-  <!-- Netlify Identity (enables /admin login redirect) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
-        }
-      });
-    }
-  </script>
-
-  <!-- Hidden Netlify Form (bot-honeypot version for AJAX guestbook submissions) -->
-  <form name="guestbook" data-netlify="true" data-netlify-honeypot="bot-field" style="display:none">
+  <!-- Netlify Form — positioned off-screen so Netlify's deploy-time scanner detects it,
+       but it is invisible to visitors. AJAX in main.js posts to this. -->
+  <form name="guestbook" data-netlify="true" data-netlify-honeypot="bot-field"
+        aria-hidden="true" class="netlify-form-ghost">
     <input type="hidden" name="form-name" value="guestbook" />
     <input name="bot-field" />
     <input name="visitor-name" />

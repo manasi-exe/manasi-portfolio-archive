@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manasi.exe ☀️</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="star-cursor">🔍</div>
+
+  <!-- SCANLINES -->
+  <div class="scanlines"></div>
+
+  <!-- MUTE BUTTON (top-left) -->
+  <button id="mute-btn" class="mute-btn" title="Toggle Music" style="display:none">🔊</button>
+
+  <!-- BREATHER BUTTON (top-right) -->
+  <button id="breather-btn" class="breather-btn" onclick="openBreather()" style="display:none">🌬️ Take a Breather</button>
+
+  <!-- ════════════════════════════════════
+       BOOT / TITLE SCREEN
+  ════════════════════════════════════ -->
+  <div id="boot-screen">
+    <canvas id="boot-canvas"></canvas>
+    <div class="boot-ui">
+      <div class="boot-title-wrap">
+        <div id="boot-char-canvas-wrap">
+          <canvas id="boot-char-canvas" width="144" height="264"></canvas>
+        </div>
+        <h1 class="boot-logo" id="boot-logo">Manasi.exe</h1>
+        <p class="boot-sub">a living archive &amp; portfolio</p>
+      </div>
+      <div class="boot-progress-wrap" id="boot-progress-wrap">
+        <div class="boot-progress-label" id="boot-progress-label">collecting mushrooms…</div>
+        <div class="boot-stars-row" id="boot-stars-row"></div>
+      </div>
+      <button class="start-btn" id="start-btn" style="display:none">▶ &nbsp;PRESS START</button>
+      <p class="boot-hint" id="boot-hint" style="display:none">or press any key · or click anywhere</p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       MAIN SITE
+  ════════════════════════════════════ -->
+  <div id="main-site" style="display:none">
+
+    <!-- SCROLLING PIXEL WORLD BACKGROUND -->
+    <canvas id="bg-canvas" class="bg-canvas"></canvas>
+
+    <!-- HEADER -->
+    <header class="header-screen">
+      <div class="header-content">
+
+        <!-- Avatar -->
+        <div class="sim-wrap">
+          <canvas id="sim-canvas" width="144" height="264"></canvas>
+        </div>
+
+        <h1 class="glitch-title" data-text="Manasi.exe">Manasi.exe</h1>
+
+        <p class="subtitle">
+          <span class="sub-item"><span class="sub-icon">🗂️</span> Portfolio &amp; Archive</span>
+          <span class="sub-divider">|</span>
+          <span class="sub-item"><span class="sub-icon">✉️</span> <a href="mailto:manasi.pant@outlook.com" class="mailto-link">manasi.pant@outlook.com</a></span>
+          <span class="sub-divider">|</span>
+          <span class="sub-item"><span class="sub-icon">💼</span> <a href="https://www.linkedin.com/in/manasi-pant/" class="mailto-link" target="_blank" rel="noopener">LinkedIn</a></span>
+        </p>
+
+        <div class="header-stats">
+          <div class="unified-xp-box">
+            <div class="xp-left-col">
+              <div class="xp-explore-label">Explore the site to gain XP</div>
+              <div class="xp-main-row">
+                <span class="stat-icon-lg">⚡</span>
+                <span class="stat-label-sm">XP</span>
+                <span class="xp-bar"><span class="xp-fill" id="xp-fill"></span></span>
+                <span class="stat-val" id="xp-val">0</span>
+              </div>
+            </div>
+            <div class="xp-box-divider"></div>
+            <div class="coin-right-col">
+              <div class="coin-hint-label">Try Something New<br>to earn coins!</div>
+              <div class="coin-main-row">
+                <span class="stat-icon-lg">💰</span>
+                <span class="stat-label-sm">COINS</span>
+                <span class="stat-val" id="coin-count">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <nav class="pixel-nav">
+          <a href="#about"    class="nav-btn internal-link">ABOUT</a>
+          <a href="#skills"   class="nav-btn internal-link">SKILLS</a>
+          <a href="#projects" class="nav-btn internal-link">QUESTS</a>
+          <a href="#minigame" class="nav-btn internal-link">TRY SOMETHING NEW!</a>
+          <a href="#contact"  class="nav-btn internal-link">GUESTBOOK</a>
+        </nav>
+
+      </div>
+
+      <!-- Rolling ticker -->
+      <div class="ticker-wrap">
+        <div class="ticker">
+          🌸 Welcome, player 2! 🌸 &nbsp;&nbsp;&nbsp; ☀️ Thank you for joining! ☀️ &nbsp;&nbsp;&nbsp; 🌿 Open to collaborations 🌿 &nbsp;&nbsp;&nbsp; 🎮 Explore to earn XP 🎮 &nbsp;&nbsp;&nbsp; ✨ Try something new today ✨ &nbsp;&nbsp;&nbsp; 💌 Leave a note in the guestbook 💌 &nbsp;&nbsp;&nbsp; 🌸 Welcome, player 2! 🌸 &nbsp;&nbsp;&nbsp;
+        </div>
+      </div>
+    </header>
+
+    <!-- ── ABOUT ── -->
+    <section id="about" class="section about-section">
+      <div class="section-header">
+        <span class="section-icon">🌻</span>
+        <h2>ABOUT</h2>
+        <span class="section-icon">🌻</span>
+      </div>
+      <div class="about-grid">
+
+        <div class="about-card pixel-box tape-yellow">
+          <h3>// ABOUT PLAYER 1 //</h3>
+          <table class="stat-table">
+            <tr><td>NAME:</td><td data-cms-field="name">MANASI PANT</td></tr>
+            <tr><td>EMAIL:</td><td data-cms-field="email">manasi.pant@outlook.com</td></tr>
+            <tr><td>EDUCATION:</td><td data-cms-field="education">Master of International Affairs in Economic Development and Data Analysis — Columbia University</td></tr>
+            <tr><td>STATUS:</td><td class="blink-green" data-cms-field="status">★ EXPLORING AND LEARNING ★</td></tr>
+            <tr><td>SUMMARY:</td><td data-cms-field="summary">Researcher, Consultant, Side Quest Enthusiast</td></tr>
+          </table>
+        </div>
+
+        <div class="about-card pixel-box tape-pink">
+          <h3>// BIO.TXT //</h3>
+          <p class="bio-text" id="cms-bio">&nbsp;</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SKILLS ── -->
+    <section id="skills" class="section skills-section">
+      <div class="section-header">
+        <span class="section-icon">🍄</span>
+        <h2>ABILITIES &amp; POWER-UPS</h2>
+        <span class="section-icon">🍄</span>
+      </div>
+      <div class="skills-grid" id="skills-grid"></div>
+      <div class="resume-preview-wrap">
+        <button class="pixel-btn resume-preview-btn" onclick="openResume()">📄 PREVIEW RESUME</button>
+      </div>
+    </section>
+
+    <!-- ── QUEST LOG ── -->
+    <section id="projects" class="section projects-section">
+      <div class="section-header">
+        <span class="section-icon">🗺️</span>
+        <h2>QUEST LOG</h2>
+        <span class="section-icon">🗺️</span>
+      </div>
+      <div class="quest-tabs">
+        <button class="quest-tab active" data-tab="research">RESEARCH</button>
+        <button class="quest-tab" data-tab="multimedia">MULTIMEDIA</button>
+        <button class="quest-tab" data-tab="blog">BLOG</button>
+        <button class="quest-tab" data-tab="resources">RESOURCES</button>
+        <button class="quest-tab" data-tab="features">FEATURES</button>
+      </div>
+      <div class="quest-map-wrap">
+        <canvas id="quest-map-canvas" class="quest-map-canvas"></canvas>
+        <div id="quest-pins-layer" class="quest-pins-layer"></div>
+      </div>
+    </section>
+
+    <!-- ── TRY SOMETHING NEW ── -->
+    <section id="minigame" class="section garden-section">
+      <div class="section-header">
+        <span class="section-icon">✨</span>
+        <h2>TRY SOMETHING NEW!</h2>
+        <span class="section-icon">✨</span>
+      </div>
+      <div class="garden-wrap">
+        <div class="garden-hud">
+          <span>🪙 COINS: <span id="garden-coins">0</span></span>
+          <span>🎁 OPENED THIS SESSION: <span id="baskets-opened">0</span></span>
+        </div>
+        <div class="basket-game-container">
+          <canvas id="garden-canvas" width="800" height="500"></canvas>
+          <div id="basket-suggestion-overlay" class="basket-suggestion-overlay" style="display:none">
+            <div class="suggestion-card">
+              <div class="suggestion-basket-name" id="suggestion-basket-name"></div>
+              <canvas id="gem-canvas" width="100" height="100" class="gem-canvas-display"></canvas>
+              <p class="suggestion-text" id="suggestion-text"></p>
+              <div class="suggestion-coins-earned">+500 🪙 coins earned!</div>
+              <button class="pixel-btn suggestion-close-btn" onclick="closeBasketSuggestion()">✨ GOT IT! ✨</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── GUESTBOOK ── -->
+    <section id="contact" class="section contact-section">
+      <div class="section-header">
+        <span class="section-icon">📮</span>
+        <h2>GUESTBOOK</h2>
+        <span class="section-icon">📮</span>
+      </div>
+      <div class="contact-grid">
+
+        <div class="postcard-form tape-lavender">
+          <!-- Postcard top bar -->
+          <div class="pc-topbar">
+            <span class="pc-topbar-title">✦ POST CARD ✦</span>
+            <span class="pc-topbar-sub">correspondence &amp; greetings</span>
+          </div>
+          <!-- Postcard body: message left | divider | address right -->
+          <div class="pc-body">
+            <!-- Left: message -->
+            <div class="pc-left">
+              <div class="pc-section-label">message</div>
+              <div class="pc-lined-area">
+                <textarea id="gb-msg" class="pc-textarea" placeholder="Dear Manasi…" rows="7"></textarea>
+              </div>
+              <span class="word-limit-display" id="word-limit-display">(0 / 150 words)</span>
+            </div>
+            <!-- Divider -->
+            <div class="pc-divider-col"></div>
+            <!-- Right: stamp + from info -->
+            <div class="pc-right">
+              <div class="pc-stamp-row">
+                <div class="pc-stamp">🌸</div>
+              </div>
+              <div class="pc-section-label">from</div>
+              <input type="text"  id="gb-name"  class="pc-field-input" placeholder="name / alias" />
+              <input type="email" id="gb-email" class="pc-field-input" placeholder="email *" required />
+              <div class="pc-addr-lines">
+                <div class="pc-addr-line"></div>
+                <div class="pc-addr-line"></div>
+                <div class="pc-addr-line"></div>
+              </div>
+              <button class="pixel-btn pc-send-btn" onclick="submitGuestbook()">SEND ▶</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="guestbook-postbox-area">
+          <canvas id="guestbook-avatar" width="144" height="264" class="gb-avatar-canvas"></canvas>
+          <div class="postbox-scene">
+            <canvas id="postbox-canvas" width="140" height="160"></canvas>
+            <div id="letter-anim" class="letter-anim" style="display:none">💌</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pixel-footer">
+      <div class="footer-top">© 2026 Manasi.exe — all rights reserved</div>
+      <div class="footer-bottom blink-slow">▶ thank you for playing ◀</div>
+    </footer>
+
+  </div><!-- /#main-site -->
+
+  <!-- ── MULTIMEDIA PAGE ── -->
+  <div id="multimedia-page" class="multimedia-page" style="display:none">
+    <div class="multimedia-header">
+      <button class="back-btn" onclick="hideMultimedia()">◀ BACK</button>
+      <h2>📺 MULTIMEDIA VAULT</h2>
+    </div>
+    <div class="multimedia-tabs">
+      <button class="mm-tab active" data-mm="videos">🎬 VIDEOS</button>
+      <button class="mm-tab" data-mm="podcasts">🎙️ PODCASTS</button>
+      <button class="mm-tab" data-mm="art">🎨 ART &amp; PROJECTS</button>
+    </div>
+    <div class="multimedia-grid" id="multimedia-grid"></div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" style="display:none">
+    <div class="lightbox-inner">
+      <button class="lb-close" onclick="closeLightbox()">✕</button>
+      <div id="lb-content"></div>
+    </div>
+  </div>
+
+  <!-- FLOAT EFFECTS -->
+  <div id="star-effect"  class="float-effect" style="display:none">+1 ⭐</div>
+  <div id="xp-effect"    class="float-effect xp-fx" style="display:none">+XP ⚡</div>
+  <div id="coin-effect"  class="float-effect coin-fx" style="display:none">+500 🪙</div>
+
+  <!-- TAKE A BREATHER persistent button handled above -->
+
+  <!-- BREATHING MODAL -->
+  <div id="breather-modal" class="breather-modal" style="display:none">
+    <div class="breather-inner">
+      <button class="breather-close" onclick="closeBreather()">✕</button>
+      <div class="breather-title">🌬️ TAKE A BREATHER</div>
+      <canvas id="breather-canvas" width="180" height="180"></canvas>
+      <div id="breather-phase-text" class="breather-phase-text">ready?</div>
+      <div id="breather-cycle-text" class="breather-cycle-text">cycle 0 / 5</div>
+      <button id="breather-start-btn" class="pixel-btn breather-start-btn" onclick="startBreather()">▶ BEGIN</button>
+    </div>
+  </div>
+
+  <!-- LEFT SIDE LADDER -->
+  <div id="ladder-wrap" class="ladder-wrap" style="display:none">
+    <canvas id="ladder-canvas" width="80" height="2000"></canvas>
+  </div>
+
+  <!-- RESUME MODAL -->
+  <div id="resume-modal" class="resume-modal" style="display:none">
+    <div class="resume-modal-inner">
+      <button class="breather-close" onclick="closeResume()">✕</button>
+      <div class="resume-title">📄 RESUME</div>
+      <div class="resume-placeholder">
+        <div class="resume-placeholder-icon">📄</div>
+        <div class="resume-placeholder-text">Resume PDF coming soon!</div>
+        <div class="resume-placeholder-sub">Upload your resume.pdf to the site folder and it will appear here.</div>
+        <a href="resume.pdf" target="_blank" class="pixel-btn resume-open-btn" id="resume-link">OPEN PDF ▶</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Netlify Identity (enables /admin login redirect) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+        }
+      });
+    }
+  </script>
+
+  <!-- Hidden Netlify Form (bot-honeypot version for AJAX guestbook submissions) -->
+  <form name="guestbook" data-netlify="true" data-netlify-honeypot="bot-field" style="display:none">
+    <input type="hidden" name="form-name" value="guestbook" />
+    <input name="bot-field" />
+    <input name="visitor-name" />
+    <input name="visitor-email" />
+    <textarea name="message"></textarea>
+  </form>
+
+  <script src="main.js"></script>
+</body>
+</html>

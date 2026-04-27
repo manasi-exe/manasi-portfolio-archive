@@ -1,0 +1,32 @@
+{
+  "research": [
+    { "title": "ECONOMIC DEVELOPMENT RESEARCH", "tags": ["RESEARCH","POLICY"], "desc": "Quantitative research on economic development interventions and long-term outcomes.", "status": "ONGOING", "date": "2023-09" },
+    { "title": "DATA ANALYSIS PRACTICUM", "tags": ["DATA","COLUMBIA"], "desc": "Applied data analysis for international development policy.", "status": "COMPLETE", "date": "2023-05" },
+    { "title": "POLICY BRIEF SERIES", "tags": ["POLICY","WRITING"], "desc": "Series of policy briefs on global development challenges.", "status": "ONGOING", "date": "2024-02" },
+    { "title": "FIELDWORK & SURVEYS", "tags": ["RESEARCH","FIELDWORK"], "desc": "Primary data collection and analysis in emerging markets.", "status": "COMPLETE", "date": "2022-08" }
+  ],
+  "multimedia": [
+    { "title": "VIDEO DOCUMENTARY", "tags": ["VIDEO","STORYTELLING"], "desc": "Short-form documentary exploring communities and structural change.", "status": "ONGOING", "date": "2024-03" },
+    { "title": "VISUAL EXPERIMENTS", "tags": ["ART","VIDEO"], "desc": "Experimental visual work blending documentary and artistic practice.", "status": "ONGOING", "date": "2023-11" },
+    { "title": "AUDIO STORIES", "tags": ["AUDIO","PODCAST"], "desc": "Audio-first storytelling and podcast features.", "status": "ONGOING", "date": "2024-01" },
+    { "title": "PHOTO SERIES", "tags": ["PHOTOGRAPHY","DOCUMENTARY"], "desc": "Long-form documentary photography from the field.", "status": "ONGOING", "date": "2022-06" }
+  ],
+  "blog": [
+    { "title": "FIELD NOTES", "tags": ["WRITING","BLOG"], "desc": "Personal essays and dispatches from research and fieldwork.", "status": "ONGOING", "date": "2023-07" },
+    { "title": "POLICY PERSPECTIVES", "tags": ["WRITING","POLICY"], "desc": "Reflections and commentary on development policy.", "status": "ONGOING", "date": "2024-01" },
+    { "title": "SIDE QUEST DIARIES", "tags": ["PERSONAL","BLOG"], "desc": "Musings on creativity, curiosity, and life between quests.", "status": "PLANNED", "date": "2025-06" },
+    { "title": "READING NOTES", "tags": ["BOOKS","WRITING"], "desc": "Notes and reactions from the reading list.", "status": "ONGOING", "date": "2023-04" }
+  ],
+  "resources": [
+    { "title": "READING LIST", "tags": ["BOOKS","RESOURCES"], "desc": "Curated reading on development economics, data, and design.", "status": "ONGOING", "date": "2022-12" },
+    { "title": "RESEARCH TOOLS", "tags": ["TOOLS","DATA"], "desc": "Guides and tools for researchers and consultants.", "status": "PLANNED", "date": "2025-03" },
+    { "title": "OPEN DATASETS", "tags": ["DATA","OPEN"], "desc": "Publicly available datasets and analysis scripts.", "status": "ONGOING", "date": "2023-10" },
+    { "title": "LINKS & REFERENCES", "tags": ["RESOURCES","ARCHIVE"], "desc": "Collected links, papers, and references worth keeping.", "status": "ONGOING", "date": "2022-10" }
+  ],
+  "features": [
+    { "title": "FEATURED IN", "tags": ["PRESS","MEDIA"], "desc": "Media coverage, mentions, and features from publications and organizations.", "status": "ONGOING", "date": "2024-06" },
+    { "title": "CONFERENCE TALKS", "tags": ["SPEAKING","EVENTS"], "desc": "Panels, presentations, and invited talks at conferences and forums.", "status": "ONGOING", "date": "2023-11" },
+    { "title": "COLLABORATIONS", "tags": ["COLLAB","PARTNERSHIP"], "desc": "Cross-disciplinary projects and partnerships with researchers and creators.", "status": "ONGOING", "date": "2024-01" },
+    { "title": "AWARDS & GRANTS", "tags": ["RECOGNITION","FUNDING"], "desc": "Scholarships, grants, and recognition received for research and creative work.", "status": "COMPLETE", "date": "2023-05" }
+  ]
+}

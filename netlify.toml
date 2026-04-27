@@ -1,0 +1,33 @@
+# ============================================================
+#  Manasi.exe — Netlify Configuration
+# ============================================================
+#
+#  DEPLOYMENT SETUP (required for CMS to work):
+#  1. Push this folder to a GitHub repository
+#  2. In Netlify: "Add new site → Import from Git" → pick your repo
+#  3. Build settings: leave Build Command blank, Publish Directory = "."
+#  4. After deploy, go to: Site settings → Identity → Enable Identity
+#  5. Under Identity → Services → Enable Git Gateway
+#  6. Under Identity → Registration → set to "Invite only"
+#  7. Go to Identity tab → Invite users → invite your own email
+#  8. Check your email, click the invite link, set a password
+#  9. Visit yoursite.netlify.app/admin to log in and edit content
+# ============================================================
+
+[build]
+  publish = "."
+  # No build command – pure static site
+
+# Serve /admin as the admin index
+[[redirects]]
+  from   = "/admin"
+  to     = "/admin/index.html"
+  status = 200
+
+# Allow Netlify Identity widget to work
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"

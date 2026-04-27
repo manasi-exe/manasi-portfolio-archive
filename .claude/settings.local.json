@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node generate-sfx.js)",
+      "Bash(node --input-type=module)",
+      "Bash(node *)"
+    ]
+  }
+}

@@ -1,0 +1,219 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets"
+public_folder: "/assets"
+
+collections:
+
+  - name: "profile"
+    label: "Player Profile"
+    files:
+      - name: "profile"
+        label: "Profile & Bio"
+        file: "content/profile.json"
+        format: json
+        fields:
+          - label: "Display Name"
+            name: "name"
+            widget: "string"
+            hint: "e.g. MANASI PANT"
+          - label: "Email"
+            name: "email"
+            widget: "string"
+          - label: "Education"
+            name: "education"
+            widget: "string"
+          - label: "Status Line"
+            name: "status"
+            widget: "string"
+            hint: "e.g. ★ EXPLORING AND LEARNING ★"
+          - label: "Summary / Tagline"
+            name: "summary"
+            widget: "string"
+          - label: "Bio"
+            name: "bio"
+            widget: "text"
+            hint: "Shown in the BIO.TXT card. Plain text, line breaks supported."
+
+  - name: "skills"
+    label: "Skills & Abilities"
+    files:
+      - name: "skills"
+        label: "Skills List"
+        file: "content/skills.json"
+        format: json
+        fields:
+          - label: "Skills"
+            name: "skills"
+            widget: "list"
+            summary: "{{fields.name}} — LV.{{fields.level}}"
+            fields:
+              - label: "Skill Name"
+                name: "name"
+                widget: "string"
+                hint: "All caps, e.g. RESEARCH"
+              - label: "Level (1-10)"
+                name: "level"
+                widget: "number"
+                value_type: "int"
+                min: 1
+                max: 10
+
+  - name: "projects"
+    label: "Quest Log"
+    files:
+      - name: "projects"
+        label: "All Projects"
+        file: "content/projects.json"
+        format: json
+        fields:
+          - label: "Research"
+            name: "research"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "Tag"
+                  name: "tag"
+                  widget: "string"
+              - label: "Description"
+                name: "desc"
+                widget: "text"
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["ONGOING", "COMPLETE", "PLANNED", "PAUSED"]
+              - label: "Date (YYYY-MM)"
+                name: "date"
+                widget: "string"
+
+          - label: "Multimedia"
+            name: "multimedia"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "Tag"
+                  name: "tag"
+                  widget: "string"
+              - label: "Description"
+                name: "desc"
+                widget: "text"
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["ONGOING", "COMPLETE", "PLANNED", "PAUSED"]
+              - label: "Date (YYYY-MM)"
+                name: "date"
+                widget: "string"
+
+          - label: "Blog"
+            name: "blog"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "Tag"
+                  name: "tag"
+                  widget: "string"
+              - label: "Description"
+                name: "desc"
+                widget: "text"
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["ONGOING", "COMPLETE", "PLANNED", "PAUSED"]
+              - label: "Date (YYYY-MM)"
+                name: "date"
+                widget: "string"
+
+          - label: "Resources"
+            name: "resources"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "Tag"
+                  name: "tag"
+                  widget: "string"
+              - label: "Description"
+                name: "desc"
+                widget: "text"
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["ONGOING", "COMPLETE", "PLANNED", "PAUSED"]
+              - label: "Date (YYYY-MM)"
+                name: "date"
+                widget: "string"
+
+          - label: "Features"
+            name: "features"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "Tag"
+                  name: "tag"
+                  widget: "string"
+              - label: "Description"
+                name: "desc"
+                widget: "text"
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["ONGOING", "COMPLETE", "PLANNED", "PAUSED"]
+              - label: "Date (YYYY-MM)"
+                name: "date"
+                widget: "string"
+
+  - name: "site_text"
+    label: "Site Text"
+    files:
+      - name: "site_text"
+        label: "Global Text"
+        file: "content/site-text.json"
+        format: json
+        fields:
+          - label: "Page Title (browser tab)"
+            name: "pageTitle"
+            widget: "string"
+          - label: "Boot Screen Subtitle"
+            name: "bootSubtitle"
+            widget: "string"
+          - label: "Ticker / Marquee Text"
+            name: "ticker"
+            widget: "text"
+            hint: "The scrolling banner. Separate items with spaces."

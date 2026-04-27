@@ -41,10 +41,8 @@ collections:
             name: "resumeUrl"
             widget: "file"
             required: false
-            hint: "Upload your resume PDF here. Leave blank to hide the button."
-            media_library:
-              config:
-                multiple: false
+            allow_multiple: false
+            hint: "Upload your resume PDF. Once uploaded, a button appears on your site linking to it."
 
   # ── SKILLS ─────────────────────────────────────────────────────
   - name: "skills"

@@ -1,12 +1,40 @@
 {
   "skills": [
-    { "name": "RESEARCH", "level": 9 },
-    { "name": "DATA ANALYSIS", "level": 8 },
-    { "name": "POLICY WRITING", "level": 9 },
-    { "name": "STORYTELLING", "level": 8 },
-    { "name": "DESIGN", "level": 8 },
-    { "name": "VIDEO EDITING", "level": 7 },
-    { "name": "STRATEGY", "level": 8 },
-    { "name": "PHOTOGRAPHY", "level": 7 }
+    {
+      "name": "RESEARCH",
+      "level": 9
+    },
+    {
+      "name": "DATA ANALYSIS",
+      "level": 8
+    },
+    {
+      "name": "POLICY WRITING",
+      "level": 9
+    },
+    {
+      "name": "STORYTELLING",
+      "level": 8
+    },
+    {
+      "name": "DESIGN",
+      "level": 8
+    },
+    {
+      "name": "VIDEO EDITING",
+      "level": 7
+    },
+    {
+      "name": "STRATEGY",
+      "level": 8
+    },
+    {
+      "name": "PHOTOGRAPHY",
+      "level": 7
+    },
+    {
+      "name": "LOW-CODE WEB DESIGN",
+      "level": 3
+    }
   ]
 }

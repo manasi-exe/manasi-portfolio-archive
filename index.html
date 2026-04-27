@@ -95,11 +95,11 @@
         </div>
 
         <nav class="pixel-nav">
-          <a href="#about"    class="nav-btn internal-link">ABOUT</a>
-          <a href="#skills"   class="nav-btn internal-link">SKILLS</a>
-          <a href="#projects" class="nav-btn internal-link">QUESTS</a>
-          <a href="#minigame" class="nav-btn internal-link">TRY SOMETHING NEW!</a>
-          <a href="#contact"  class="nav-btn internal-link">GUESTBOOK</a>
+          <a href="#about"    class="nav-btn internal-link" data-cms-nav="about">ABOUT</a>
+          <a href="#skills"   class="nav-btn internal-link" data-cms-nav="skills">SKILLS</a>
+          <a href="#projects" class="nav-btn internal-link" data-cms-nav="quests">QUESTS</a>
+          <a href="#minigame" class="nav-btn internal-link" data-cms-nav="minigame">TRY SOMETHING NEW!</a>
+          <a href="#contact"  class="nav-btn internal-link" data-cms-nav="guestbook">GUESTBOOK</a>
         </nav>
 
       </div>
@@ -122,7 +122,7 @@
       <div class="about-grid">
 
         <div class="about-card pixel-box tape-yellow">
-          <h3>// ABOUT PLAYER 1 //</h3>
+          <h3 id="cms-about-card1-title">// ABOUT PLAYER 1 //</h3>
           <table class="stat-table">
             <tr><td>NAME:</td><td data-cms-field="name">MANASI PANT</td></tr>
             <tr><td>EMAIL:</td><td data-cms-field="email">manasi.pant@outlook.com</td></tr>
@@ -133,7 +133,7 @@
         </div>
 
         <div class="about-card pixel-box tape-pink">
-          <h3>// BIO.TXT //</h3>
+          <h3 id="cms-about-card2-title">// BIO.TXT //</h3>
           <p class="bio-text" id="cms-bio">&nbsp;</p>
         </div>
 
@@ -212,8 +212,8 @@
         <div class="postcard-form tape-lavender">
           <!-- Postcard top bar -->
           <div class="pc-topbar">
-            <span class="pc-topbar-title">✦ POST CARD ✦</span>
-            <span class="pc-topbar-sub">correspondence &amp; greetings</span>
+            <span class="pc-topbar-title" id="cms-gb-card-title">✦ POST CARD ✦</span>
+            <span class="pc-topbar-sub" id="cms-gb-card-sub">correspondence &amp; greetings</span>
           </div>
           <!-- Postcard body: message left | divider | address right -->
           <div class="pc-body">
@@ -258,8 +258,8 @@
 
     <!-- FOOTER -->
     <footer class="pixel-footer">
-      <div class="footer-top">© 2026 Manasi.exe — all rights reserved</div>
-      <div class="footer-bottom blink-slow">▶ thank you for playing ◀</div>
+      <div class="footer-top" id="cms-footer-top">© 2026 Manasi.exe — all rights reserved</div>
+      <div class="footer-bottom blink-slow" id="cms-footer-bottom">▶ thank you for playing ◀</div>
     </footer>
 
   </div><!-- /#main-site -->
@@ -317,9 +317,9 @@
       <div class="resume-title">📄 RESUME</div>
       <div class="resume-placeholder">
         <div class="resume-placeholder-icon">📄</div>
-        <div class="resume-placeholder-text">Resume PDF coming soon!</div>
-        <div class="resume-placeholder-sub">Upload your resume.pdf to the site folder and it will appear here.</div>
-        <a href="resume.pdf" target="_blank" class="pixel-btn resume-open-btn" id="resume-link">OPEN PDF ▶</a>
+        <div class="resume-placeholder-text" id="cms-resume-title">Resume PDF coming soon!</div>
+        <div class="resume-placeholder-sub" id="cms-resume-sub">Upload your resume via the /admin panel and it will appear here.</div>
+        <a href="#" target="_blank" class="pixel-btn resume-open-btn" id="resume-link" style="display:none">OPEN PDF ▶</a>
       </div>
     </div>
   </div>

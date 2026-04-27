@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "about": "ABOUT",
+    "skills": "SKILLS",
+    "quests": "QUESTS",
+    "minigame": "TRY SOMETHING NEW!",
+    "guestbook": "GUESTBOOK"
+  },
+  "sections": {
+    "about": "ABOUT",
+    "skills": "ABILITIES & POWER-UPS",
+    "quests": "QUEST LOG",
+    "minigame": "TRY SOMETHING NEW!",
+    "guestbook": "GUESTBOOK"
+  },
+  "footer": {
+    "copyright": "© 2026 Manasi.exe — all rights reserved",
+    "tagline": "▶ thank you for playing ◀"
+  },
+  "buttons": {
+    "resumePreview": "📄 PREVIEW RESUME",
+    "resumeOpen": "OPEN PDF ▶",
+    "guestbookSend": "SEND ▶",
+    "breather": "🌬️ Take a Breather",
+    "startBtn": "▶  PRESS START"
+  },
+  "about": {
+    "card1Title": "// ABOUT PLAYER 1 //",
+    "card2Title": "// BIO.TXT //"
+  },
+  "guestbook": {
+    "placeholder": "Dear Manasi…",
+    "cardTitle": "✦ POST CARD ✦",
+    "cardSub": "correspondence & greetings"
+  }
+}

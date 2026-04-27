@@ -686,6 +686,30 @@ body {
   font-family: var(--pixel);
   font-size: 0.52rem;
 }
+.lc-image {
+  width: 100%;
+  max-height: 100px;
+  object-fit: cover;
+  border: 2px solid #C8AA70;
+  margin-bottom: 7px;
+  image-rendering: auto;
+}
+.lc-link {
+  display: inline-block;
+  margin-top: 7px;
+  font-size: 0.48rem;
+  padding: 4px 8px;
+  text-decoration: none;
+  background: var(--accent);
+  color: #fff;
+  border: 2px solid var(--text);
+  box-shadow: 2px 2px 0 var(--text);
+}
+.lc-link:hover {
+  transform: translate(-1px,-1px);
+  box-shadow: 3px 3px 0 var(--text);
+}
+.lc-desc a { color: var(--accent); text-decoration: underline; }
 
 /* ---- GARDEN / PICNIC ---- */
 .garden-section { text-align: center; padding: 52px 24px; }

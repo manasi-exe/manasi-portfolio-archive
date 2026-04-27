@@ -353,31 +353,55 @@ setTimeout(addNextStar,800);
 //  MAIN SITE INIT
 // ============================================================
 // ============================================================
+//  MARKDOWN → HTML (lightweight, safe — only applied to CMS content)
+// ============================================================
+function mdToHtml(text){
+  if(!text) return '';
+  return text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/\n\n/g,'</p><p>')
+    .replace(/\n/g,'<br>');
+}
+
+// ============================================================
 //  CMS CONTENT LOADER
 //  Fetches /content/*.json (written by Decap CMS via git-gateway).
 //  Falls back gracefully when files are missing (local dev).
 // ============================================================
 async function loadCMSContent(){
   try {
-    const [profileRes, skillsRes, projectsRes, siteTextRes] = await Promise.all([
+    const [profileRes, skillsRes, projectsRes, siteTextRes, uiTextRes] = await Promise.all([
       fetch('/content/profile.json'),
       fetch('/content/skills.json'),
       fetch('/content/projects.json'),
       fetch('/content/site-text.json'),
+      fetch('/content/ui-text.json'),
     ]);
 
     // ── Profile ────────────────────────────────────────────────
     if(profileRes.ok){
       const p=await profileRes.json();
-      const fields=['name','email','education','status','summary'];
-      fields.forEach(f=>{
+      ['name','email','education','status','summary'].forEach(f=>{
         const el=document.querySelector(`[data-cms-field="${f}"]`);
         if(el&&p[f]) el.textContent=p[f];
       });
       const bioEl=document.getElementById('cms-bio');
       if(bioEl&&p.bio){
-        bioEl.style.whiteSpace='pre-wrap';
-        bioEl.textContent=p.bio;
+        bioEl.innerHTML='<p>'+mdToHtml(p.bio)+'</p>';
+      }
+      // Resume PDF link
+      const resumeLink=document.getElementById('resume-link');
+      const resumeTitle=document.getElementById('cms-resume-title');
+      const resumeSub=document.getElementById('cms-resume-sub');
+      if(p.resumeUrl){
+        if(resumeLink){ resumeLink.href=p.resumeUrl; resumeLink.style.display='inline-block'; }
+        if(resumeTitle) resumeTitle.textContent='Resume ready — click below to open!';
+        if(resumeSub) resumeSub.textContent='';
+      } else {
+        if(resumeLink) resumeLink.style.display='none';
       }
     }
 
@@ -395,8 +419,7 @@ async function loadCMSContent(){
     // ── Projects ───────────────────────────────────────────────
     if(projectsRes.ok){
       const proj=await projectsRes.json();
-      const tabs=['research','multimedia','blog','resources','features'];
-      tabs.forEach(tab=>{
+      ['research','multimedia','blog','resources','features'].forEach(tab=>{
         if(Array.isArray(proj[tab])&&proj[tab].length) PROJECTS_DATA[tab]=proj[tab];
       });
       renderQuestMap(activeTab);
@@ -405,7 +428,7 @@ async function loadCMSContent(){
     // ── Site Text ──────────────────────────────────────────────
     if(siteTextRes.ok){
       const t=await siteTextRes.json();
-      if(t.pageTitle)   document.title=t.pageTitle;
+      if(t.pageTitle) document.title=t.pageTitle;
       if(t.bootSubtitle){
         const el=document.querySelector('.boot-sub');
         if(el) el.textContent=t.bootSubtitle;
@@ -413,6 +436,79 @@ async function loadCMSContent(){
       if(t.ticker){
         const el=document.querySelector('.ticker');
         if(el) el.innerHTML=t.ticker+' &nbsp;&nbsp;&nbsp; '+t.ticker+' &nbsp;&nbsp;&nbsp;';
+      }
+    }
+
+    // ── UI Text ────────────────────────────────────────────────
+    if(uiTextRes.ok){
+      const u=await uiTextRes.json();
+
+      // Navigation buttons
+      if(u.nav){
+        document.querySelectorAll('[data-cms-nav]').forEach(el=>{
+          const key=el.dataset.cmsNav;
+          if(u.nav[key]) el.textContent=u.nav[key];
+        });
+      }
+
+      // Section headers (h2 inside each section)
+      if(u.sections){
+        [['about','#about h2'],['skills','#skills h2'],['quests','#projects h2'],
+         ['minigame','#minigame h2'],['guestbook','#contact h2']].forEach(([k,sel])=>{
+          if(u.sections[k]){
+            const el=document.querySelector(sel);
+            if(el) el.textContent=u.sections[k];
+          }
+        });
+      }
+
+      // Footer
+      if(u.footer){
+        const ft=document.getElementById('cms-footer-top');
+        const fb=document.getElementById('cms-footer-bottom');
+        if(ft&&u.footer.copyright) ft.textContent=u.footer.copyright;
+        if(fb&&u.footer.tagline)   fb.textContent=u.footer.tagline;
+      }
+
+      // Buttons
+      if(u.buttons){
+        const btnMap=[
+          ['resumePreview','.resume-preview-btn'],
+          ['resumeOpen','#resume-link'],
+          ['breather','#breather-btn'],
+        ];
+        btnMap.forEach(([k,sel])=>{
+          if(u.buttons[k]){
+            const el=document.querySelector(sel);
+            if(el) el.textContent=u.buttons[k];
+          }
+        });
+        if(u.buttons.guestbookSend){
+          const el=document.querySelector('.pc-send-btn');
+          if(el) el.textContent=u.buttons.guestbookSend;
+        }
+        if(u.buttons.startBtn){
+          const el=document.getElementById('start-btn');
+          if(el) el.textContent=u.buttons.startBtn;
+        }
+      }
+
+      // About card titles
+      if(u.about){
+        const t1=document.getElementById('cms-about-card1-title');
+        const t2=document.getElementById('cms-about-card2-title');
+        if(t1&&u.about.card1Title) t1.textContent=u.about.card1Title;
+        if(t2&&u.about.card2Title) t2.textContent=u.about.card2Title;
+      }
+
+      // Guestbook labels
+      if(u.guestbook){
+        const gbPlaceholder=document.getElementById('gb-msg');
+        if(gbPlaceholder&&u.guestbook.placeholder) gbPlaceholder.placeholder=u.guestbook.placeholder;
+        const gbTitle=document.getElementById('cms-gb-card-title');
+        const gbSub=document.getElementById('cms-gb-card-sub');
+        if(gbTitle&&u.guestbook.cardTitle) gbTitle.textContent=u.guestbook.cardTitle;
+        if(gbSub&&u.guestbook.cardSub)     gbSub.textContent=u.guestbook.cardSub;
       }
     }
   } catch(e){
@@ -1001,8 +1097,7 @@ function renderQuestMap(tab){
   // Apply filter + sort
   let items=(PROJECTS_DATA[activeTab]||[]).slice();
   if(activeStatusFilter!=="ALL") items=items.filter(it=>it.status===activeStatusFilter);
-  if(activeSortOrder==="oldest") items.sort((a,b)=>a.date<b.date?-1:1);
-  else items.sort((a,b)=>a.date>b.date?-1:1);
+  items.sort((a,b)=>a.date>b.date?-1:1);
   const n=items.length;
 
   // Dynamic height: each item needs ~185px of vertical space
@@ -1207,12 +1302,16 @@ function renderQuestMap(tab){
     const offX=leftSide?'0%':'-100%';
     const dateStr=item.date?'<div class="lc-date">'+item.date+'</div>':'';
     card.style.cssText='position:absolute;left:'+(wp.x+(leftSide?18:-18))+'px;top:'+(wp.y+24)+'px;transform:translateX('+offX+');width:220px;--lc-tx:'+offX+';';
+    const linkBtn=item.link?'<a class="lc-link pixel-btn" href="'+item.link+'" target="_blank" rel="noopener">VIEW ▶</a>':'';
+    const imgTag=item.image?'<img class="lc-image" src="'+item.image+'" alt="'+item.title+'" loading="lazy">':'';
     card.innerHTML='<div class="lc-num">#'+(i+1)+'</div>'
+      +imgTag
       +'<div class="lc-title">'+item.title+'</div>'
       +'<div class="lc-tags">'+item.tags.map(t=>'<span class="tag">'+t+'</span>').join('')+'</div>'
-      +'<p class="lc-desc">'+item.desc+'</p>'
+      +'<p class="lc-desc">'+mdToHtml(item.desc)+'</p>'
       +dateStr
-      +'<div class="lc-status" style="color:'+(STATUS_COLORS[item.status]||'#604090')+'">● '+item.status+'</div>';
+      +'<div class="lc-status" style="color:'+(STATUS_COLORS[item.status]||'#604090')+'">● '+item.status+'</div>'
+      +linkBtn;
     card.addEventListener('click',e=>{addStar(e.clientX,e.clientY);addXP(3,e.clientX,e.clientY);});
     pinsLayer.appendChild(card);
   });
@@ -1232,10 +1331,6 @@ function initQuestFilters(){
     +'<button class="qf-btn" data-status="PLANNED">PLANNED</button>'
     +'<button class="qf-btn" data-status="COMPLETE">COMPLETE</button>'
     +'<button class="qf-btn" data-status="PAUSED">PAUSED</button>'
-    +'</div>'
-    +'<div class="qf-group"><span class="qf-label">SORT:</span>'
-    +'<button class="qf-sort active" data-sort="newest">NEWEST FIRST</button>'
-    +'<button class="qf-sort" data-sort="oldest">OLDEST FIRST</button>'
     +'</div>';
   tabsDiv.insertAdjacentElement('afterend',bar);
   bar.querySelectorAll('.qf-btn').forEach(b=>{
@@ -1243,15 +1338,6 @@ function initQuestFilters(){
       bar.querySelectorAll('.qf-btn').forEach(x=>x.classList.remove('active'));
       b.classList.add('active');
       activeStatusFilter=b.dataset.status;
-      renderQuestMap();
-      playBlip();
-    });
-  });
-  bar.querySelectorAll('.qf-sort').forEach(b=>{
-    b.addEventListener('click',()=>{
-      bar.querySelectorAll('.qf-sort').forEach(x=>x.classList.remove('active'));
-      b.classList.add('active');
-      activeSortOrder=b.dataset.sort;
       renderQuestMap();
       playBlip();
     });
@@ -1968,24 +2054,36 @@ function submitGuestbook(){
   const nameVal=document.getElementById("gb-name").value.trim();
   const email=document.getElementById("gb-email").value.trim();
   const msg=document.getElementById("gb-msg").value.trim();
-  if(!email){alert("Email is required!");return;}
-  if(!msg)return;
+  if(!email){alert("Please enter your email so I know who to thank! ✉️");return;}
+  if(!msg){alert("Write me a little note first! 📝");return;}
   if(msg.split(/\s+/).length>150){alert("Please keep your letter under 150 words!");return;}
+
+  // Disable button to prevent double-submit
+  const sendBtn=document.querySelector('.pc-send-btn');
+  if(sendBtn){ sendBtn.disabled=true; sendBtn.textContent='SENDING…'; }
 
   const body=new URLSearchParams({
     "form-name":"guestbook",
+    "bot-field":"",
     "visitor-name":nameVal,
     "visitor-email":email,
     "message":msg
   });
 
   fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:body.toString()})
-    .catch(()=>{}); // fail silently — animation still plays
+    .then(r=>{
+      if(!r.ok) console.warn("Guestbook: server returned",r.status);
+    })
+    .catch(()=>{}) // silent in local dev
+    .finally(()=>{
+      if(sendBtn){ sendBtn.disabled=false; sendBtn.textContent='SEND ▶'; }
+    });
 
+  // Clear + animate immediately for instant feedback
   document.getElementById("gb-name").value="";
   document.getElementById("gb-email").value="";
   document.getElementById("gb-msg").value="";
-  if(wlDisplay)wlDisplay.textContent="(0 / 150 words)";
+  if(wlDisplay) wlDisplay.textContent="(0 / 150 words)";
   animateLetterDelivery(); playDing(); addXP(10); addStar(window.innerWidth/2,window.innerHeight/2);
 }
 

@@ -2,11 +2,12 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "assets"
-public_folder: "/assets"
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
 
 collections:
 
+  # ── PLAYER PROFILE ─────────────────────────────────────────────
   - name: "profile"
     label: "Player Profile"
     files:
@@ -18,7 +19,7 @@ collections:
           - label: "Display Name"
             name: "name"
             widget: "string"
-            hint: "e.g. MANASI PANT"
+            hint: "Shown in the ABOUT card (e.g. MANASI PANT)"
           - label: "Email"
             name: "email"
             widget: "string"
@@ -34,9 +35,18 @@ collections:
             widget: "string"
           - label: "Bio"
             name: "bio"
-            widget: "text"
-            hint: "Shown in the BIO.TXT card. Plain text, line breaks supported."
+            widget: "markdown"
+            hint: "Rich text. Supports **bold**, *italic*, [links](url), and paragraphs."
+          - label: "Resume PDF"
+            name: "resumeUrl"
+            widget: "file"
+            required: false
+            hint: "Upload your resume PDF here. Leave blank to hide the button."
+            media_library:
+              config:
+                multiple: false
 
+  # ── SKILLS ─────────────────────────────────────────────────────
   - name: "skills"
     label: "Skills & Abilities"
     files:
@@ -61,6 +71,7 @@ collections:
                 min: 1
                 max: 10
 
+  # ── QUEST LOG PROJECTS ──────────────────────────────────────────
   - name: "projects"
     label: "Quest Log"
     files:
@@ -86,7 +97,8 @@ collections:
                   widget: "string"
               - label: "Description"
                 name: "desc"
-                widget: "text"
+                widget: "markdown"
+                hint: "Supports **bold**, *italic*, and [links](url)"
               - label: "Status"
                 name: "status"
                 widget: "select"
@@ -94,6 +106,16 @@ collections:
               - label: "Date (YYYY-MM)"
                 name: "date"
                 widget: "string"
+              - label: "External Link"
+                name: "link"
+                widget: "string"
+                required: false
+                hint: "Optional URL to the project, paper, or page"
+              - label: "Image"
+                name: "image"
+                widget: "image"
+                required: false
+                hint: "Optional thumbnail image for the project card"
 
           - label: "Multimedia"
             name: "multimedia"
@@ -112,7 +134,8 @@ collections:
                   widget: "string"
               - label: "Description"
                 name: "desc"
-                widget: "text"
+                widget: "markdown"
+                hint: "Supports **bold**, *italic*, and [links](url)"
               - label: "Status"
                 name: "status"
                 widget: "select"
@@ -120,6 +143,14 @@ collections:
               - label: "Date (YYYY-MM)"
                 name: "date"
                 widget: "string"
+              - label: "External Link"
+                name: "link"
+                widget: "string"
+                required: false
+              - label: "Image"
+                name: "image"
+                widget: "image"
+                required: false
 
           - label: "Blog"
             name: "blog"
@@ -138,7 +169,8 @@ collections:
                   widget: "string"
               - label: "Description"
                 name: "desc"
-                widget: "text"
+                widget: "markdown"
+                hint: "Supports **bold**, *italic*, and [links](url)"
               - label: "Status"
                 name: "status"
                 widget: "select"
@@ -146,6 +178,14 @@ collections:
               - label: "Date (YYYY-MM)"
                 name: "date"
                 widget: "string"
+              - label: "External Link"
+                name: "link"
+                widget: "string"
+                required: false
+              - label: "Image"
+                name: "image"
+                widget: "image"
+                required: false
 
           - label: "Resources"
             name: "resources"
@@ -164,7 +204,8 @@ collections:
                   widget: "string"
               - label: "Description"
                 name: "desc"
-                widget: "text"
+                widget: "markdown"
+                hint: "Supports **bold**, *italic*, and [links](url)"
               - label: "Status"
                 name: "status"
                 widget: "select"
@@ -172,6 +213,14 @@ collections:
               - label: "Date (YYYY-MM)"
                 name: "date"
                 widget: "string"
+              - label: "External Link"
+                name: "link"
+                widget: "string"
+                required: false
+              - label: "Image"
+                name: "image"
+                widget: "image"
+                required: false
 
           - label: "Features"
             name: "features"
@@ -190,7 +239,8 @@ collections:
                   widget: "string"
               - label: "Description"
                 name: "desc"
-                widget: "text"
+                widget: "markdown"
+                hint: "Supports **bold**, *italic*, and [links](url)"
               - label: "Status"
                 name: "status"
                 widget: "select"
@@ -198,12 +248,21 @@ collections:
               - label: "Date (YYYY-MM)"
                 name: "date"
                 widget: "string"
+              - label: "External Link"
+                name: "link"
+                widget: "string"
+                required: false
+              - label: "Image"
+                name: "image"
+                widget: "image"
+                required: false
 
+  # ── SITE TEXT ───────────────────────────────────────────────────
   - name: "site_text"
     label: "Site Text"
     files:
       - name: "site_text"
-        label: "Global Text"
+        label: "Boot Screen & Ticker"
         file: "content/site-text.json"
         format: json
         fields:
@@ -216,4 +275,109 @@ collections:
           - label: "Ticker / Marquee Text"
             name: "ticker"
             widget: "text"
-            hint: "The scrolling banner. Separate items with spaces."
+            hint: "The scrolling banner. Emoji and text, separated by spaces."
+
+  # ── UI TEXT & BUTTONS ───────────────────────────────────────────
+  - name: "ui_text"
+    label: "UI Text & Buttons"
+    files:
+      - name: "ui_text"
+        label: "Navigation, Buttons & Footer"
+        file: "content/ui-text.json"
+        format: json
+        fields:
+          - label: "Navigation Buttons"
+            name: "nav"
+            widget: "object"
+            fields:
+              - label: "About"
+                name: "about"
+                widget: "string"
+              - label: "Skills"
+                name: "skills"
+                widget: "string"
+              - label: "Quests / Projects"
+                name: "quests"
+                widget: "string"
+              - label: "Mini Game"
+                name: "minigame"
+                widget: "string"
+              - label: "Guestbook"
+                name: "guestbook"
+                widget: "string"
+
+          - label: "Section Headers"
+            name: "sections"
+            widget: "object"
+            fields:
+              - label: "About Header"
+                name: "about"
+                widget: "string"
+              - label: "Skills Header"
+                name: "skills"
+                widget: "string"
+              - label: "Quest Log Header"
+                name: "quests"
+                widget: "string"
+              - label: "Mini Game Header"
+                name: "minigame"
+                widget: "string"
+              - label: "Guestbook Header"
+                name: "guestbook"
+                widget: "string"
+
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - label: "Copyright Line"
+                name: "copyright"
+                widget: "string"
+              - label: "Tagline"
+                name: "tagline"
+                widget: "string"
+
+          - label: "Button Labels"
+            name: "buttons"
+            widget: "object"
+            fields:
+              - label: "Resume Preview Button"
+                name: "resumePreview"
+                widget: "string"
+              - label: "Resume Open PDF Button"
+                name: "resumeOpen"
+                widget: "string"
+              - label: "Guestbook Send Button"
+                name: "guestbookSend"
+                widget: "string"
+              - label: "Breather Button"
+                name: "breather"
+                widget: "string"
+              - label: "Start / Press Start Button"
+                name: "startBtn"
+                widget: "string"
+
+          - label: "About Section Cards"
+            name: "about"
+            widget: "object"
+            fields:
+              - label: "Player Card Title"
+                name: "card1Title"
+                widget: "string"
+              - label: "Bio Card Title"
+                name: "card2Title"
+                widget: "string"
+
+          - label: "Guestbook Labels"
+            name: "guestbook"
+            widget: "object"
+            fields:
+              - label: "Message Placeholder"
+                name: "placeholder"
+                widget: "string"
+              - label: "Card Title"
+                name: "cardTitle"
+                widget: "string"
+              - label: "Card Subtitle"
+                name: "cardSub"
+                widget: "string"

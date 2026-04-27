@@ -19,10 +19,10 @@
   },
   "buttons": {
     "resumePreview": "📄 PREVIEW RESUME",
-    "resumeOpen": "OPEN PDF ▶",
+    "resumeOpen": "OPEN ▶",
     "guestbookSend": "SEND ▶",
     "breather": "🌬️ Take a Breather",
-    "startBtn": "▶  PRESS START"
+    "startBtn": "▶  START"
   },
   "about": {
     "card1Title": "// ABOUT PLAYER 1 //",

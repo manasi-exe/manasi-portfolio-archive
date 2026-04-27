@@ -1086,6 +1086,33 @@ function drawMapTree(ctx,x,y,s){
   ctx.beginPath();ctx.moveTo(x,y-s*1.4);ctx.lineTo(x+s*0.5,y-s*0.6);ctx.lineTo(x-s*0.5,y-s*0.6);ctx.closePath();ctx.fill();
   ctx.strokeStyle='rgba(60,90,40,0.25)';ctx.lineWidth=0.8;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+s*0.5);ctx.stroke();
 }
+
+// ── QUEST CARD MEDIA PREVIEW ──────────────────────────────────
+function mediaPreviewHtml(item){
+  let h='';
+  if(item.image){
+    h+='<img class="lc-image" src="'+item.image+'" alt="'+item.title+'" loading="lazy">';
+  }
+  if(item.videoUrl){
+    const ytId=(item.videoUrl.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/)||[])[1];
+    if(ytId){
+      h+='<div class="lc-video-wrap"><a href="'+item.videoUrl+'" target="_blank" rel="noopener">'
+       +'<img class="lc-video-thumb" src="https://img.youtube.com/vi/'+ytId+'/mqdefault.jpg" alt="Video preview">'
+       +'<span class="lc-play-btn">▶</span></a></div>';
+    } else {
+      h+='<a class="lc-media-btn" href="'+item.videoUrl+'" target="_blank" rel="noopener">🎬 WATCH ▶</a>';
+    }
+  }
+  if(item.audioUrl){
+    h+='<div class="lc-audio-wrap"><span class="lc-audio-icon">🎵</span>'
+     +'<audio class="lc-audio" controls preload="none"><source src="'+item.audioUrl+'"></audio></div>';
+  }
+  if(item.documentUrl){
+    h+='<a class="lc-media-btn" href="'+item.documentUrl+'" target="_blank" rel="noopener">📄 VIEW DOC ▶</a>';
+  }
+  return h;
+}
+
 function renderQuestMap(tab){
   if(tab) activeTab=tab;
   const cv=document.getElementById("quest-map-canvas"); if(!cv)return;
@@ -1302,16 +1329,14 @@ function renderQuestMap(tab){
     const offX=leftSide?'0%':'-100%';
     const dateStr=item.date?'<div class="lc-date">'+item.date+'</div>':'';
     card.style.cssText='position:absolute;left:'+(wp.x+(leftSide?18:-18))+'px;top:'+(wp.y+24)+'px;transform:translateX('+offX+');width:220px;--lc-tx:'+offX+';';
-    const linkBtn=item.link?'<a class="lc-link pixel-btn" href="'+item.link+'" target="_blank" rel="noopener">VIEW ▶</a>':'';
-    const imgTag=item.image?'<img class="lc-image" src="'+item.image+'" alt="'+item.title+'" loading="lazy">':'';
     card.innerHTML='<div class="lc-num">#'+(i+1)+'</div>'
-      +imgTag
+      +mediaPreviewHtml(item)
       +'<div class="lc-title">'+item.title+'</div>'
       +'<div class="lc-tags">'+((item.tags||[]).map(t=>'<span class="tag">'+t+'</span>')).join('')+'</div>'
       +'<p class="lc-desc">'+mdToHtml(item.desc)+'</p>'
       +dateStr
       +'<div class="lc-status" style="color:'+(STATUS_COLORS[item.status]||'#604090')+'">● '+item.status+'</div>'
-      +linkBtn;
+      +(item.link?'<a class="lc-media-btn lc-link" href="'+item.link+'" target="_blank" rel="noopener">🔗 VISIT ▶</a>':'');
     card.addEventListener('click',e=>{addStar(e.clientX,e.clientY);addXP(3,e.clientX,e.clientY);});
     pinsLayer.appendChild(card);
   });
@@ -1912,6 +1937,12 @@ let breatheRAF=null,breatheLastTime=0,breathePhaseElapsed=0;
 function initBreather(){
   const cv=document.getElementById("breather-canvas");
   if(cv){const ctx=cv.getContext("2d");drawBreatherIdle(ctx,cv.width,cv.height);}
+  // Wire close button via JS (backup for onclick attr)
+  const modal=document.getElementById("breather-modal");
+  const closeBtn=modal&&modal.querySelector(".breather-close");
+  if(closeBtn) closeBtn.addEventListener("click",closeBreather);
+  // Click backdrop to close
+  if(modal) modal.addEventListener("click",e=>{if(e.target===modal)closeBreather();});
 }
 
 function openBreather(){

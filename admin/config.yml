@@ -114,6 +114,23 @@ collections:
                 widget: "image"
                 required: false
                 hint: "Optional thumbnail image for the project card"
+              - label: "Video URL"
+                name: "videoUrl"
+                widget: "string"
+                required: false
+                hint: "YouTube or Vimeo URL — auto-shows thumbnail with play button on card"
+              - label: "Audio File"
+                name: "audioUrl"
+                widget: "file"
+                required: false
+                allow_multiple: false
+                hint: "Upload MP3 or OGG — shows an audio player on the card"
+              - label: "Document / Attachment"
+                name: "documentUrl"
+                widget: "file"
+                required: false
+                allow_multiple: false
+                hint: "Upload PDF, doc, or any file — shows a VIEW DOC button on the card"
 
           - label: "Multimedia"
             name: "multimedia"

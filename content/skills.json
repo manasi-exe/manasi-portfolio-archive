@@ -1,36 +1,36 @@
 {
   "skills": [
     {
-      "name": "RESEARCH",
+      "name": "QUANTITATIVE ANALYSIS & IMPACT EVALUATION",
+      "level": 8
+    },
+    {
+      "name": "QUALITATIVE RESEARCH & SYNTHESIS",
       "level": 9
     },
     {
-      "name": "DATA ANALYSIS",
+      "name": "PROJECT MANAGEMENT",
       "level": 8
     },
     {
-      "name": "POLICY WRITING",
+      "name": "STAKEHOLDER COORDINATION",
       "level": 9
     },
     {
-      "name": "STORYTELLING",
-      "level": 8
+      "name": "DIGITAL SYSTEMS & LOW-CODE BUILD-OUTS",
+      "level": 4
     },
     {
-      "name": "STRATEGY",
-      "level": 8
+      "name": "WRITING & EDITORIAL",
+      "level": 10
     },
     {
-      "name": "LOW-CODE WEB DESIGN",
-      "level": 3
+      "name": "DATA VIZ, DASHBOARDS & REPORTING",
+      "level": 7
     },
     {
-      "name": "CREATIVE PROBLEM-SOLVING",
-      "level": 8
-    },
-    {
-      "name": "STAKEHOLDER ENGAGEMENT",
-      "level": 9
+      "name": "STRATEGY PLANNING & PROGRAM/SERVICE SUPPORT",
+      "level": 7
     }
   ]
 }

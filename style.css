@@ -1278,6 +1278,7 @@ body {
   text-align: center;
 }
 .breather-btn:hover { background: var(--sky-light); transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #40A878; }
+.breather-emoji { font-size: 1.5em; vertical-align: middle; line-height: 1; }
 .breather-modal {
   position: fixed; inset: 0; z-index: 9600;
   background: rgba(10,8,32,0.88);

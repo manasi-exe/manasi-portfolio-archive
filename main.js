@@ -2231,7 +2231,7 @@ function submitGuestbook(){
 
   const subject=encodeURIComponent("Guestbook note from "+(nameVal||"a visitor"));
   const mailBody=encodeURIComponent("From: "+(nameVal||"Anonymous")+"\nReply to: "+email+"\n\n"+msg);
-  window.open("mailto:manasi.pant@outlook.com?subject="+subject+"&body="+mailBody);
+  window.location.href="mailto:manasi.pant@outlook.com?subject="+subject+"&body="+mailBody;
 
   document.getElementById("gb-name").value="";
   document.getElementById("gb-email").value="";

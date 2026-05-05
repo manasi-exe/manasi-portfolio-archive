@@ -557,7 +557,7 @@ function initMainSite(){
   }));
   initBasketGame(); loadGuestbook(); initXPListeners();
   setTimeout(animateSkillBars,400);
-  initLadder(); initBreather();
+  initLadder(); initBreather(); initResumePicker();
   loadCMSContent();
 }
 
@@ -1941,7 +1941,7 @@ function basketLoop(){
   }
 
   const centerXs=[Math.round(W*0.2),W/2|0,Math.round(W*0.8)];
-  const basketY=Math.round(H*0.30);
+  const basketY=Math.round(H*0.42);
   const currentBaskets=getCurrentBaskets();
   centerXs.forEach((cx,i)=>{
     const isOpen=openedBaskets.has(i);
@@ -2044,12 +2044,16 @@ let breatheRAF=null,breatheLastTime=0,breathePhaseElapsed=0;
 function initBreather(){
   const cv=document.getElementById("breather-canvas");
   if(cv){const ctx=cv.getContext("2d");drawBreatherIdle(ctx,cv.width,cv.height);}
-  // Wire close button via JS (backup for onclick attr)
   const modal=document.getElementById("breather-modal");
-  const closeBtn=modal&&modal.querySelector(".breather-close");
-  if(closeBtn) closeBtn.addEventListener("click",closeBreather);
-  // Click backdrop to close
-  if(modal) modal.addEventListener("click",e=>{if(e.target===modal)closeBreather();});
+  if(!modal) return;
+  // Close button — wired via JS alongside onclick attr
+  const closeBtn=modal.querySelector(".breather-close");
+  if(closeBtn) closeBtn.addEventListener("click",e=>{e.stopPropagation();closeBreather();});
+  // Stop clicks inside inner card from bubbling to backdrop
+  const inner=modal.querySelector(".breather-inner");
+  if(inner) inner.addEventListener("click",e=>e.stopPropagation());
+  // Click backdrop (outside inner) to close
+  modal.addEventListener("click",e=>{if(e.target===modal)closeBreather();});
 }
 
 function openBreather(){
@@ -2134,16 +2138,31 @@ function drawBreatherDone(ctx,W,H){
 
 // Resume picker
 function openResumePicker(){
-  document.getElementById("resume-picker-modal").style.display="flex";
+  const m=document.getElementById("resume-picker-modal");
+  if(m){m.style.display="flex";}
   playBlip();
 }
 function closeResumePicker(){
-  document.getElementById("resume-picker-modal").style.display="none";
+  const m=document.getElementById("resume-picker-modal");
+  if(m){m.style.display="none";}
 }
 function openResumePdf(type){
   const urls={research:"assets/resume-research.html",pm:"assets/resume-pm.html"};
   if(urls[type]) window.open(urls[type],"_blank");
   playBlip();
+  closeResumePicker();
+}
+function initResumePicker(){
+  const modal=document.getElementById("resume-picker-modal");
+  if(!modal) return;
+  // Close when clicking the dark backdrop (not the inner card)
+  modal.addEventListener("click",e=>{if(e.target===modal)closeResumePicker();});
+  // Wire X button via JS (belt-and-suspenders alongside onclick attr)
+  const xBtn=modal.querySelector(".breather-close");
+  if(xBtn) xBtn.addEventListener("click",e=>{e.stopPropagation();closeResumePicker();});
+  // Stop clicks inside the card from bubbling to backdrop
+  const inner=modal.querySelector(".resume-picker-inner");
+  if(inner) inner.addEventListener("click",e=>e.stopPropagation());
 }
 
 // Resume modal (legacy)
@@ -2319,4 +2338,10 @@ function closeLightbox(){
   document.body.style.overflow="";
 }
 document.getElementById("lightbox").addEventListener("click",e=>{if(e.target===e.currentTarget)closeLightbox();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLightbox();});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){
+    closeLightbox();
+    closeResumePicker();
+    closeBreather();
+  }
+});

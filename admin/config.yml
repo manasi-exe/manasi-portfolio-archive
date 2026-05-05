@@ -543,13 +543,7 @@ collections:
               - { label: "Field of Study", name: "field", widget: "string" }
               - { label: "Dates", name: "dates", widget: "string" }
               - { label: "Award / Honour", name: "award", widget: "string", required: false }
-          - label: "Skills"
-            name: "skills"
-            widget: "list"
-            summary: "{{fields.name}}"
-            fields:
-              - { label: "Skill Name", name: "name", widget: "string" }
-              - { label: "Level (0-100)", name: "pct", widget: "number", value_type: "int", min: 0, max: 100 }
+          - { label: "Tools", name: "tools", widget: "string", required: false, hint: "Overrides the Skills section tools on this resume. e.g. R · STATA · Tableau" }
 
   # ── RESUME — PROJECT MANAGEMENT ─────────────────────────────────
   - name: "resume_pm"
@@ -607,10 +601,4 @@ collections:
               - { label: "Field of Study", name: "field", widget: "string" }
               - { label: "Dates", name: "dates", widget: "string" }
               - { label: "Award / Honour", name: "award", widget: "string", required: false }
-          - label: "Skills"
-            name: "skills"
-            widget: "list"
-            summary: "{{fields.name}}"
-            fields:
-              - { label: "Skill Name", name: "name", widget: "string" }
-              - { label: "Level (0-100)", name: "pct", widget: "number", value_type: "int", min: 0, max: 100 }
+          - { label: "Tools", name: "tools", widget: "string", required: false, hint: "Overrides the Skills section tools on this resume. e.g. R · STATA · Tableau" }

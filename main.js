@@ -2229,28 +2229,10 @@ function submitGuestbook(){
   if(!msg){alert("Write me a little note first! 📝");return;}
   if(msg.split(/\s+/).length>150){alert("Please keep your letter under 150 words!");return;}
 
-  // Disable button to prevent double-submit
-  const sendBtn=document.querySelector('.pc-send-btn');
-  if(sendBtn){ sendBtn.disabled=true; sendBtn.textContent='SENDING…'; }
+  const subject=encodeURIComponent("Guestbook note from "+(nameVal||"a visitor"));
+  const mailBody=encodeURIComponent("From: "+(nameVal||"Anonymous")+"\nReply to: "+email+"\n\n"+msg);
+  window.open("mailto:manasi.pant@outlook.com?subject="+subject+"&body="+mailBody);
 
-  const body=new URLSearchParams({
-    "form-name":"guestbook",
-    "bot-field":"",
-    "visitor-name":nameVal,
-    "visitor-email":email,
-    "message":msg
-  });
-
-  fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:body.toString()})
-    .then(r=>{
-      if(!r.ok) console.warn("Guestbook: server returned",r.status);
-    })
-    .catch(()=>{}) // silent in local dev
-    .finally(()=>{
-      if(sendBtn){ sendBtn.disabled=false; sendBtn.textContent='SEND ▶'; }
-    });
-
-  // Clear + animate immediately for instant feedback
   document.getElementById("gb-name").value="";
   document.getElementById("gb-email").value="";
   document.getElementById("gb-msg").value="";

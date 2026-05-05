@@ -207,8 +207,8 @@ Promise.all([
   const toolsSec = document.getElementById('tools-section');
   const toolsRow = document.getElementById('tools-row');
   const langsRow = document.getElementById('langs-row');
-  if (sk.tools) {
-    document.getElementById('tools-val').textContent = sk.tools;
+  if (d.tools || sk.tools) {
+    document.getElementById('tools-val').textContent = d.tools || sk.tools;
     toolsRow.style.display = '';
     toolsSec.style.display = '';
   }

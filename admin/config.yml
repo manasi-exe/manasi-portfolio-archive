@@ -153,41 +153,6 @@ collections:
                 allow_multiple: false
                 hint: "Upload PDF, doc, or any file — shows a VIEW DOC button on the card"
 
-          - label: "Career"
-            name: "career"
-            widget: "list"
-            summary: "{{fields.title}}"
-            fields:
-              - label: "Title"
-                name: "title"
-                widget: "string"
-                hint: "e.g. ASSOCIATE — BENNETT MIDLAND"
-              - label: "Tags"
-                name: "tags"
-                widget: "list"
-                field:
-                  label: "Tag"
-                  name: "tag"
-                  widget: "string"
-              - label: "Description"
-                name: "desc"
-                widget: "markdown"
-              - label: "Status"
-                name: "status"
-                widget: "select"
-                options: ["ONGOING", "COMPLETE", "PLANNED", "PAUSED"]
-              - label: "Date (YYYY-MM)"
-                name: "date"
-                widget: "string"
-              - label: "External Link"
-                name: "link"
-                widget: "string"
-                required: false
-              - label: "Image"
-                name: "image"
-                widget: "image"
-                required: false
-
           - label: "Multimedia"
             name: "multimedia"
             widget: "list"
@@ -258,40 +223,6 @@ collections:
                 widget: "image"
                 required: false
 
-          - label: "Resources"
-            name: "resources"
-            widget: "list"
-            summary: "{{fields.title}}"
-            fields:
-              - label: "Title"
-                name: "title"
-                widget: "string"
-              - label: "Tags"
-                name: "tags"
-                widget: "list"
-                field:
-                  label: "Tag"
-                  name: "tag"
-                  widget: "string"
-              - label: "Description"
-                name: "desc"
-                widget: "markdown"
-                hint: "Supports **bold**, *italic*, and [links](url)"
-              - label: "Status"
-                name: "status"
-                widget: "select"
-                options: ["ONGOING", "COMPLETE", "PLANNED", "PAUSED"]
-              - label: "Date (YYYY-MM)"
-                name: "date"
-                widget: "string"
-              - label: "External Link"
-                name: "link"
-                widget: "string"
-                required: false
-              - label: "Image"
-                name: "image"
-                widget: "image"
-                required: false
 
           - label: "Features"
             name: "features"

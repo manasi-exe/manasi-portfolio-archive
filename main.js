@@ -2229,10 +2229,16 @@ function submitGuestbook(){
   if(!msg){alert("Write me a little note first! 📝");return;}
   if(msg.split(/\s+/).length>150){alert("Please keep your letter under 150 words!");return;}
 
-  fetch("/",{
+  fetch("https://api.web3forms.com/submit",{
     method:"POST",
-    headers:{"Content-Type":"application/x-www-form-urlencoded"},
-    body:new URLSearchParams({"form-name":"guestbook","bot-field":"","visitor-name":nameVal,"visitor-email":email,"message":msg}).toString()
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      access_key:"d67f0589-5dc6-45c9-b981-48395287f18f",
+      subject:"Guestbook note from "+(nameVal||"a visitor"),
+      from_name:nameVal||"Anonymous",
+      email:email,
+      message:msg
+    })
   }).catch(()=>{});
 
   document.getElementById("gb-name").value="";

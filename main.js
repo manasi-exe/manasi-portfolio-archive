@@ -1941,7 +1941,7 @@ function basketLoop(){
   }
 
   const centerXs=[Math.round(W*0.2),W/2|0,Math.round(W*0.8)];
-  const basketY=Math.round(H*0.42);
+  const basketY=Math.round(H*0.30);
   const currentBaskets=getCurrentBaskets();
   centerXs.forEach((cx,i)=>{
     const isOpen=openedBaskets.has(i);

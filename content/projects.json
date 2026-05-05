@@ -200,24 +200,8 @@
       "image": ""
     }
   ],
-  "multimedia": [
-    {
-      "title": "test",
-      "desc": "test",
-      "link": "https://www.youtube.com/watch?v=hT5I6Sh9ebA",
-      "image": "/assets/uploads/md32334870386.jpg",
-      "status": "PLANNED",
-      "date": "2026"
-    }
-  ],
-  "blog": [
-    {
-      "title": "hi",
-      "desc": "hihi",
-      "status": "ONGOING",
-      "date": "2026"
-    }
-  ],
+  "multimedia": [],
+  "blog": [],
   "resources": [],
   "features": [
     {

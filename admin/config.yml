@@ -99,7 +99,7 @@ collections:
         file: "content/projects.json"
         format: json
         fields:
-          - label: "Research"
+          - label: "Research & Publications"
             name: "research"
             widget: "list"
             summary: "{{fields.title}}"
@@ -152,40 +152,6 @@ collections:
                 required: false
                 allow_multiple: false
                 hint: "Upload PDF, doc, or any file — shows a VIEW DOC button on the card"
-
-          - label: "Publications"
-            name: "publications"
-            widget: "list"
-            summary: "{{fields.title}}"
-            fields:
-              - label: "Title"
-                name: "title"
-                widget: "string"
-              - label: "Tags"
-                name: "tags"
-                widget: "list"
-                field:
-                  label: "Tag"
-                  name: "tag"
-                  widget: "string"
-              - label: "Description"
-                name: "desc"
-                widget: "markdown"
-              - label: "Status"
-                name: "status"
-                widget: "select"
-                options: ["ONGOING", "COMPLETE", "PLANNED", "PAUSED"]
-              - label: "Date (YYYY-MM)"
-                name: "date"
-                widget: "string"
-              - label: "External Link"
-                name: "link"
-                widget: "string"
-                required: false
-              - label: "Image"
-                name: "image"
-                widget: "image"
-                required: false
 
           - label: "Career"
             name: "career"

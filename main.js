@@ -952,8 +952,8 @@ updateHUD();
 function showEffect(id,x,y){
   const el=document.getElementById(id); if(!el)return;
   el.style.left=x+"px"; el.style.top=y+"px"; el.style.display="block"; el.style.animation="none";
-  requestAnimationFrame(()=>{el.style.animation="star-float 1s ease-out forwards";});
-  setTimeout(()=>{el.style.display="none";},1100);
+  requestAnimationFrame(()=>{el.style.animation="star-float 2s ease-out forwards";});
+  setTimeout(()=>{el.style.display="none";},2100);
 }
 
 function addStar(x,y){ showEffect("star-effect",x,y); playCoin(); }
@@ -1180,11 +1180,8 @@ function renderQuestMap(tab){
   const isMobile=window.innerWidth<500;
   const W=isMobile?(wrap.offsetWidth||window.innerWidth):Math.max(wrap.offsetWidth,600);
 
-  // Apply filter + sort — research tab merges research + publications
-  let items=(activeTab==='research'
-    ? [...(PROJECTS_DATA.research||[]),...(PROJECTS_DATA.publications||[])]
-    : (PROJECTS_DATA[activeTab]||[])
-  ).slice();
+  // Apply filter + sort
+  let items=(PROJECTS_DATA[activeTab]||[]).slice();
   if(activeStatusFilter!=="ALL") items=items.filter(it=>it.status===activeStatusFilter);
   items.sort((a,b)=>a.date>b.date?-1:1);
   const n=items.length;

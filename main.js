@@ -361,7 +361,7 @@ function triggerStart(){
   initMainSite();
 }
 startBtn.addEventListener("click",triggerStart);
-document.getElementById("boot-screen").addEventListener("click",()=>{ if(bootPhase==="ready") triggerStart(); });
+document.getElementById("boot-screen").addEventListener("click",(e)=>{ if(bootPhase==="ready" && !e.target.closest('a')) triggerStart(); });
 bootLoop();
 setTimeout(addNextStar,800);
 

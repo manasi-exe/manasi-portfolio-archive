@@ -1,207 +1,279 @@
 {
   "research": [
     {
-      "title": "PHILADELPHIA PROFESSIONAL SERVICES CONTRACTS ANALYSIS",
-      "tags": ["RESEARCH", "POLICY", "DATA ANALYSIS"],
       "org": "Bennett Midland / Pew Charitable Trusts",
+      "date": "2025",
       "desc": "Led mixed-methods analysis of $21B worth of professional services contracts from FY20 to January FY25, identifying structural drivers of delayed conformance. Facilitated 40+ interviews with City stakeholders and benchmarked performance against peer cities and Federal and State policies. Produced a 100+ page published report with 26 actionable recommendations to improve Philadelphia's contracting system.",
       "status": "COMPLETE",
-      "date": "2025-01",
-      "link": "https://www.pew.org/en/research-and-analysis/white-papers/2025/12/how-philadelphias-professional-services-contracts-can-be-improved",
-      "image": "",
+      "documentUrl": "",
       "videoUrl": "",
+      "title": "PHILADELPHIA PROFESSIONAL SERVICES CONTRACTS ANALYSIS",
+      "tags": [
+        "RESEARCH",
+        "POLICY",
+        "DATA ANALYSIS"
+      ],
       "audioUrl": "",
-      "documentUrl": ""
+      "link": "https://www.pew.org/en/research-and-analysis/white-papers/2025/12/how-philadelphias-professional-services-contracts-can-be-improved",
+      "image": ""
     },
     {
-      "title": "INDONESIA ELDERCARE POLICY RESEARCH",
-      "tags": ["RESEARCH", "POLICY", "INTERNATIONAL"],
       "org": "Oxfam Indonesia & Columbia University",
+      "date": "2024",
       "desc": "Led a six-person interdisciplinary team analyzing Indonesia's eldercare policy landscape. Coordinated interviews, focus groups, and desk research with caregivers, seniors, and policy experts across Indonesia. Synthesized qualitative and quantitative inputs into a policy brief for the Indonesian Ministry of Social Affairs recommending demographic-responsive eldercare and caregiver-support policies.",
       "status": "COMPLETE",
-      "date": "2024-01",
-      "link": "",
-      "image": "",
+      "documentUrl": "",
       "videoUrl": "",
+      "title": "INDONESIA ELDERCARE POLICY RESEARCH",
+      "tags": [
+        "RESEARCH",
+        "POLICY",
+        "INTERNATIONAL"
+      ],
       "audioUrl": "",
-      "documentUrl": ""
+      "link": "https://drive.google.com/file/d/1J7YSq2HoTT6MqZw3mCoi-J61xi4MxppT/view",
+      "image": ""
     },
     {
-      "title": "GENDER-RESPONSIVE FINANCIAL INCLUSION EVALUATION",
-      "tags": ["RESEARCH", "GENDER", "FINANCE"],
       "org": "Women's World Banking",
+      "date": "2024",
       "desc": "Conducted impact evaluations of gender-responsive financial inclusion tools by analyzing survey data and comparing outcomes across user groups to assess links between financial services and holistic empowerment outcomes across material, cognitive, perceptual, and relational dimensions. Co-authored an impact report informing grantmaking and allocation decisions at Women's World Banking, published October 2024.",
       "status": "COMPLETE",
-      "date": "2023-06",
+      "documentUrl": "",
+      "videoUrl": "",
+      "title": "GENDER-RESPONSIVE FINANCIAL INCLUSION EVALUATION",
+      "tags": [
+        "RESEARCH",
+        "GENDER",
+        "FINANCE"
+      ],
+      "audioUrl": "",
       "link": "https://www.womensworldbanking.org/wp-content/uploads/2024/10/Experiencing-impact-Evidence-on-financial-services-and-womens-empowerment.pdf",
-      "image": "",
-      "videoUrl": "",
-      "audioUrl": "",
-      "documentUrl": ""
-    },
-    {
-      "title": "U.S. GUN CONTROL PUBLIC OPINION STUDY",
-      "tags": ["RESEARCH", "QUANTITATIVE", "POLICY"],
-      "org": "Columbia University & Harvard Kennedy School",
-      "desc": "Assisted with research design and primary data collection for a quantitative study on the evolving opinion of U.S. citizens on gun control policies, conducted jointly by Columbia University and Harvard Kennedy School. Supported survey instrument development, data entry, and quality checking to ensure accuracy of collected data.",
-      "status": "COMPLETE",
-      "date": "2023-01",
-      "link": "",
-      "image": "",
-      "videoUrl": "",
-      "audioUrl": "",
-      "documentUrl": ""
+      "image": ""
     }
   ],
   "publications": [
     {
-      "title": "HOW PHILADELPHIA'S PROFESSIONAL SERVICES CONTRACTS CAN BE IMPROVED",
-      "tags": ["REPORT", "POLICY", "PEW"],
+      "date": "2025-01",
       "desc": "Report published by the Pew Charitable Trusts, 2025. Examines Philadelphia's professional services contracting system and offers 26 actionable reforms to create a more efficient, equitable, and sustainable procurement system.",
       "status": "COMPLETE",
-      "date": "2025-01",
-      "link": "https://www.pew.org/en/research-and-analysis/white-papers/2025/12/how-philadelphias-professional-services-contracts-can-be-improved",
-      "image": "",
+      "documentUrl": "",
       "videoUrl": "",
+      "title": "HOW PHILADELPHIA'S PROFESSIONAL SERVICES CONTRACTS CAN BE IMPROVED",
+      "tags": [
+        "REPORT",
+        "POLICY",
+        "PEW"
+      ],
       "audioUrl": "",
-      "documentUrl": ""
+      "link": "https://www.pew.org/en/research-and-analysis/white-papers/2025/12/how-philadelphias-professional-services-contracts-can-be-improved",
+      "image": ""
     },
     {
-      "title": "EXPERIENCING IMPACT: EVIDENCE ON FINANCIAL SERVICES AND WOMEN'S EMPOWERMENT",
-      "tags": ["REPORT", "GENDER", "FINANCE"],
+      "date": "2024-10",
       "desc": "Report published by Women's World Banking, 2024. Examines how access to financial services can drive women's economic empowerment across material, cognitive, perceptual, and relational dimensions.",
       "status": "COMPLETE",
-      "date": "2024-10",
-      "link": "https://www.womensworldbanking.org/wp-content/uploads/2024/10/Experiencing-impact-Evidence-on-financial-services-and-womens-empowerment.pdf",
-      "image": "",
+      "documentUrl": "",
       "videoUrl": "",
+      "title": "EXPERIENCING IMPACT: EVIDENCE ON FINANCIAL SERVICES AND WOMEN'S EMPOWERMENT",
+      "tags": [
+        "REPORT",
+        "GENDER",
+        "FINANCE"
+      ],
       "audioUrl": "",
-      "documentUrl": ""
+      "link": "https://www.womensworldbanking.org/wp-content/uploads/2024/10/Experiencing-impact-Evidence-on-financial-services-and-womens-empowerment.pdf",
+      "image": ""
     },
     {
-      "title": "AN UNSUITABLE PROFESSION? THE WORK AND LIVES OF WOMEN WHO WORK AS TOUR GUIDES IN AGRA, INDIA",
-      "tags": ["ACADEMIC", "GENDER", "INDIA"],
+      "date": "2024-01",
       "desc": "Academic publication, 2024. Co-authored with Prof. Juhi Sidharth (PhD, Cambridge University). Uses grounded theory to explore the role of family, care work, and societal norms in shaping the careers of women tour guides.",
       "status": "COMPLETE",
-      "date": "2024-01",
-      "link": "https://www.researchgate.net/publication/382254940_Multidisciplinary_Approaches_To_Field_Learning",
-      "image": "",
+      "documentUrl": "",
       "videoUrl": "",
+      "title": "AN UNSUITABLE PROFESSION? THE WORK AND LIVES OF WOMEN WHO WORK AS TOUR GUIDES IN AGRA, INDIA",
+      "tags": [
+        "ACADEMIC",
+        "GENDER",
+        "INDIA"
+      ],
       "audioUrl": "",
-      "documentUrl": ""
+      "link": "https://www.researchgate.net/publication/382254940_Multidisciplinary_Approaches_To_Field_Learning",
+      "image": ""
     }
   ],
   "career": [
     {
-      "title": "ASSOCIATE — BENNETT MIDLAND",
-      "tags": ["CONSULTING", "DATA ANALYSIS", "PROJECT MANAGEMENT"],
+      "date": "2024-01",
       "desc": "Led workstreams spanning data analysis, impact evaluation, and project management to support City, philanthropic, and non-profit clients. Collected, vetted, and synthesized qualitative and quantitative data — including 50+ interviews and focus groups, surveys, and administrative datasets — to develop evidence-based recommendations. Translated findings into clear, actionable insights through written deliverables, presentations, and shared dashboards. Managed client relationships across City agencies, philanthropic funders, and non-profit organizations, incorporating feedback and managing shifting priorities across concurrent projects.",
       "status": "COMPLETE",
-      "date": "2024-01",
-      "link": "",
-      "image": "",
+      "documentUrl": "",
       "videoUrl": "",
+      "title": "ASSOCIATE — BENNETT MIDLAND",
+      "tags": [
+        "CONSULTING",
+        "DATA ANALYSIS",
+        "PROJECT MANAGEMENT"
+      ],
       "audioUrl": "",
-      "documentUrl": ""
+      "link": "",
+      "image": ""
     },
     {
-      "title": "RESEARCH & PROJECT MANAGER — OXFAM INDONESIA & COLUMBIA UNIVERSITY",
-      "tags": ["RESEARCH", "PROJECT MANAGEMENT", "INTERNATIONAL"],
+      "date": "2023-06",
       "desc": "Led a six-person interdisciplinary team analyzing Indonesia's eldercare policy landscape, managing timelines, deliverables, and team workflows across a multi-semester research engagement. Served as primary client contact with Oxfam Indonesia, incorporating feedback and communicating progress throughout the project lifecycle. Facilitated regular team check-ins, maintained documentation, and coordinated fieldwork logistics including interviews and focus groups across Indonesia.",
       "status": "COMPLETE",
-      "date": "2023-06",
-      "link": "",
-      "image": "",
+      "documentUrl": "",
       "videoUrl": "",
+      "title": "RESEARCH & PROJECT MANAGER — OXFAM INDONESIA & COLUMBIA UNIVERSITY",
+      "tags": [
+        "RESEARCH",
+        "PROJECT MANAGEMENT",
+        "INTERNATIONAL"
+      ],
       "audioUrl": "",
-      "documentUrl": ""
+      "link": "",
+      "image": ""
     },
     {
-      "title": "TEACHING ASSISTANT — COLUMBIA UNIVERSITY",
-      "tags": ["TEACHING", "ECONOMICS", "EDUCATION"],
+      "date": "2024-01",
       "desc": "Teaching Assistant for Advanced Macroeconomic Analysis at Columbia University's School of International and Public Affairs (SIPA). Supported graduate students in understanding calculus-based macroeconomic concepts through structured office hours and targeted review sessions. Graded assignments and provided written feedback, maintaining timely turnaround and clear documentation of student performance.",
       "status": "COMPLETE",
-      "date": "2024-01",
-      "link": "",
-      "image": "",
+      "documentUrl": "",
       "videoUrl": "",
+      "title": "TEACHING ASSISTANT — COLUMBIA UNIVERSITY",
+      "tags": [
+        "TEACHING",
+        "ECONOMICS",
+        "EDUCATION"
+      ],
       "audioUrl": "",
-      "documentUrl": ""
+      "link": "",
+      "image": ""
     },
     {
-      "title": "QUANTITATIVE RESEARCH INTERN — WOMEN'S WORLD BANKING",
-      "tags": ["RESEARCH", "GENDER", "FINANCE"],
+      "date": "2023-01",
       "desc": "Conducted impact evaluations of gender-responsive financial inclusion tools by analyzing survey data across user groups to assess links between financial services and holistic empowerment outcomes. Co-authored an impact report informing grantmaking and fund allocation decisions at Women's World Banking, published in October 2024. Cleaned and organized large datasets and contributed to literature reviews synthesizing evidence on women's financial empowerment globally.",
       "status": "COMPLETE",
-      "date": "2023-01",
-      "link": "",
-      "image": "",
+      "documentUrl": "",
       "videoUrl": "",
+      "title": "QUANTITATIVE RESEARCH INTERN — WOMEN'S WORLD BANKING",
+      "tags": [
+        "RESEARCH",
+        "GENDER",
+        "FINANCE"
+      ],
       "audioUrl": "",
-      "documentUrl": ""
+      "link": "",
+      "image": ""
     },
     {
-      "title": "RESEARCH ASSISTANT — COLUMBIA UNIVERSITY & HARVARD KENNEDY SCHOOL",
-      "tags": ["RESEARCH", "QUANTITATIVE", "POLICY"],
+      "date": "2023-01",
       "desc": "Assisted with research design and primary data collection for a quantitative study on the evolving opinion of U.S. citizens on gun control policies, conducted jointly by Columbia University and Harvard Kennedy School. Supported survey instrument development, data entry, and quality checking to ensure accuracy of collected data.",
       "status": "COMPLETE",
-      "date": "2023-01",
-      "link": "",
-      "image": "",
+      "documentUrl": "",
       "videoUrl": "",
+      "title": "RESEARCH ASSISTANT — COLUMBIA UNIVERSITY & HARVARD KENNEDY SCHOOL",
+      "tags": [
+        "RESEARCH",
+        "QUANTITATIVE",
+        "POLICY"
+      ],
       "audioUrl": "",
-      "documentUrl": ""
+      "link": "",
+      "image": ""
     },
     {
-      "title": "SENIOR CAMPAIGNER — JHATKAA.ORG",
-      "tags": ["ADVOCACY", "COMMUNICATIONS", "GENDER"],
+      "date": "2021-01",
       "desc": "Led end-to-end digital advocacy campaigns on worker rights and gender equality, coordinating petition drives, social media outreach, and coalition building across India. Engaged government stakeholders, community organizations, and media partners to amplify campaign reach and drive policy attention. Drafted campaign communications, policy briefs, and press materials translating complex issues into accessible public-facing content.",
       "status": "COMPLETE",
-      "date": "2021-01",
-      "link": "",
-      "image": "",
+      "documentUrl": "",
       "videoUrl": "",
+      "title": "SENIOR CAMPAIGNER — JHATKAA.ORG",
+      "tags": [
+        "ADVOCACY",
+        "COMMUNICATIONS",
+        "GENDER"
+      ],
       "audioUrl": "",
-      "documentUrl": ""
+      "link": "",
+      "image": ""
     }
   ],
-  "multimedia": [],
-  "blog": [],
+  "multimedia": [
+    {
+      "title": "test",
+      "desc": "test",
+      "link": "https://www.youtube.com/watch?v=hT5I6Sh9ebA",
+      "image": "/assets/uploads/md32334870386.jpg",
+      "status": "PLANNED",
+      "date": "2026"
+    }
+  ],
+  "blog": [
+    {
+      "title": "hi",
+      "desc": "hihi",
+      "status": "ONGOING",
+      "date": "2026"
+    }
+  ],
   "resources": [],
   "features": [
     {
       "title": "GUEST SPEAKER: WHAT MAKES A RESPECTABLE WOMAN?",
-      "tags": ["SPEAKING", "GENDER", "INTERSECTIONALITY", "INDIA"],
+      "tags": [
+        "SPEAKING",
+        "GENDER",
+        "INTERSECTIONALITY",
+        "INDIA"
+      ],
       "desc": "Guest speaker on 'What makes a respectable woman? — An intersectional lens.' Examined how caste, class, religion, and gender intersect to define respectability norms in India. Hosted by the Rotaract Club at Delhi University.",
       "status": "COMPLETE",
-      "date": "2023-02",
+      "date": "2020",
       "link": "",
       "image": ""
     },
     {
       "title": "GENDER EQUALITY PANELLIST: WHAT DOES FEMINISM MEAN TO GEN Z?",
-      "tags": ["SPEAKING", "FEMINISM", "YOUTH", "EVENTS"],
+      "tags": [
+        "SPEAKING",
+        "FEMINISM",
+        "YOUTH",
+        "EVENTS"
+      ],
       "desc": "Gender equality panellist at The Tale of Humankind — India's largest youth summit. Discussed what feminism means to Generation Z and how young people are reshaping feminist practice.",
       "status": "COMPLETE",
-      "date": "2022-09",
+      "date": "2020",
       "link": "",
       "image": ""
     },
     {
       "title": "GUEST SPEAKER: ON INTERSECTIONAL FEMINISM",
-      "tags": ["SPEAKING", "FEMINISM", "GENDER", "EDUCATION"],
+      "tags": [
+        "SPEAKING",
+        "FEMINISM",
+        "GENDER",
+        "EDUCATION"
+      ],
       "desc": "Guest speaker on intersectional feminism and its relevance to contemporary social movements. Hosted by Vellore Institute of Technology.",
       "status": "COMPLETE",
-      "date": "2022-03",
+      "date": "2020",
       "link": "",
       "image": ""
     },
     {
       "title": "PANELLIST: CARE WORK, DOMESTIC VIOLENCE & WOMEN'S MENTAL HEALTH (COVID-19)",
-      "tags": ["SPEAKING", "GENDER", "COVID-19", "POLICY", "MENTAL HEALTH"],
+      "tags": [
+        "SPEAKING",
+        "GENDER",
+        "COVID-19",
+        "POLICY",
+        "MENTAL HEALTH"
+      ],
       "desc": "Panellist on the effects of the COVID-19 lockdown on unpaid care work, increased domestic violence, and women's mental health. Hosted by The Gender Lab.",
       "status": "COMPLETE",
-      "date": "2021-06",
+      "date": "2020",
       "link": "",
       "image": ""
     }

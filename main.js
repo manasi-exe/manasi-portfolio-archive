@@ -2229,11 +2229,11 @@ function submitGuestbook(){
   if(!msg){alert("Write me a little note first! 📝");return;}
   if(msg.split(/\s+/).length>150){alert("Please keep your letter under 150 words!");return;}
 
-  const subject=encodeURIComponent("Guestbook note from "+(nameVal||"a visitor"));
-  const mailBody=encodeURIComponent("From: "+(nameVal||"Anonymous")+"\nReply to: "+email+"\n\n"+msg);
-  const _a=document.createElement('a');
-  _a.href="mailto:manasi.pant@outlook.com?subject="+subject+"&body="+mailBody;
-  _a.click();
+  fetch("/",{
+    method:"POST",
+    headers:{"Content-Type":"application/x-www-form-urlencoded"},
+    body:new URLSearchParams({"form-name":"guestbook","bot-field":"","visitor-name":nameVal,"visitor-email":email,"message":msg}).toString()
+  }).catch(()=>{});
 
   document.getElementById("gb-name").value="";
   document.getElementById("gb-email").value="";

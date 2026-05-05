@@ -1,0 +1,118 @@
+{
+  "slotLabel": "SAVE FILE 2",
+  "tagline": "Project Management · Advocacy · Communications",
+  "name": "Manasi Pant",
+  "email": "manasi.pant@outlook.com",
+  "linkedin": "https://www.linkedin.com/in/manasi-pant/",
+  "location": "New York, USA",
+  "experience": [
+    {
+      "role": "Associate",
+      "org": "Bennett Midland · Philadelphia, PA",
+      "dates": "2024 – 2026",
+      "bullets": [
+        "Led workstreams spanning data analysis, impact evaluation, and project management to support City, philanthropic, and non-profit clients.",
+        "Maintained project trackers and coordinated workflows across internal teams and external stakeholders, ensuring alignment on timelines, deliverables, and client expectations.",
+        "Managed client relationships across City agencies, philanthropic funders, and non-profit organizations, incorporating feedback and managing shifting priorities across concurrent projects.",
+        "Translated findings into clear, actionable insights through written deliverables, presentations, and shared dashboards, including a 100+ page published report with 26 actionable recommendations.",
+        "Collected, vetted, and synthesized qualitative and quantitative data — including 50+ interviews and focus groups — to develop evidence-based recommendations."
+      ]
+    },
+    {
+      "role": "Research and Project Manager",
+      "org": "Oxfam Indonesia & Columbia University · New York, NY",
+      "dates": "2023 – 2024",
+      "bullets": [
+        "Led a six-person interdisciplinary team, managing timelines, deliverables, and team workflows across a multi-semester research engagement.",
+        "Served as primary client contact with Oxfam Indonesia, incorporating feedback, communicating progress, and managing shifting priorities throughout the project lifecycle.",
+        "Facilitated regular team check-ins, maintained documentation, and ensured all deliverables met academic and client quality standards.",
+        "Coordinated fieldwork logistics including interviews and focus groups with stakeholders across Indonesia."
+      ]
+    },
+    {
+      "role": "Teaching Assistant — Advanced Macroeconomic Analysis",
+      "org": "Columbia University · New York, NY",
+      "dates": "2024",
+      "bullets": [
+        "Supported graduate students through structured sessions and office hours, translating complex economic theory into accessible instruction.",
+        "Graded assignments and provided written feedback, maintaining timely turnaround and clear documentation of student performance."
+      ]
+    },
+    {
+      "role": "Quantitative Research Intern",
+      "org": "Women's World Banking · New York, NY",
+      "dates": "2023",
+      "bullets": [
+        "Contributed to project coordination and documentation for a multi-country impact evaluation of gender-responsive financial inclusion tools.",
+        "Co-authored an impact report informing grantmaking and fund allocation decisions, published in October 2024.",
+        "Organized and maintained datasets and research files across project stages, ensuring quality and consistency of deliverables."
+      ]
+    },
+    {
+      "role": "Research Assistant",
+      "org": "Columbia University & Harvard Kennedy School · New York, NY",
+      "dates": "2023",
+      "bullets": [
+        "Supported research design and primary data collection for a joint quantitative study on U.S. public opinion on gun control policies.",
+        "Assisted with survey instrument development, data entry, and quality control across data collection phases."
+      ]
+    },
+    {
+      "role": "Senior Campaigner",
+      "org": "Jhatkaa.org · Bengaluru, India",
+      "dates": "2021 – 2022",
+      "bullets": [
+        "Led end-to-end digital advocacy campaigns on worker rights and gender equality, managing campaign strategy, content production, and stakeholder coordination.",
+        "Engaged government stakeholders, coalition partners, and media organizations to amplify campaign reach and policy impact.",
+        "Drafted campaign communications, policy briefs, and press materials translating complex issues into accessible, actionable public-facing content."
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "title": "How Philadelphia's Professional Services Contracts Can Be Improved",
+      "year": "2025",
+      "publisher": "Pew Charitable Trusts",
+      "type": "Report",
+      "tags": ["POLICY", "GOVERNANCE", "URBAN", "PROJECT MANAGEMENT"]
+    },
+    {
+      "title": "Experiencing Impact: Evidence on Financial Services and Women's Empowerment",
+      "year": "2024",
+      "publisher": "Women's World Banking",
+      "type": "Report",
+      "tags": ["GENDER", "FINANCE", "DEVELOPMENT"]
+    },
+    {
+      "title": "An Unsuitable Profession? The Work and Lives of Women Who Work as Tour Guides in Agra, India",
+      "year": "2024",
+      "publisher": "Academic Publication",
+      "type": "Academic",
+      "tags": ["GENDER", "FIELDWORK", "INDIA"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of International Affairs",
+      "institution": "Columbia University",
+      "field": "Economics and Data Analysis",
+      "dates": "2022 – 2024",
+      "award": "Dr. Gitelson Award for Best Capstone Report contributing to international discourse on human values"
+    },
+    {
+      "degree": "Bachelor of Arts",
+      "institution": "FLAME University",
+      "field": "Psychology and Sociology",
+      "dates": "2016 – 2019",
+      "award": "Second place for Best Research Report"
+    }
+  ],
+  "skills": [
+    { "name": "Project Management", "pct": 80 },
+    { "name": "Workflow & Deadline Management", "pct": 90 },
+    { "name": "Stakeholder Communications", "pct": 90 },
+    { "name": "Clear Communication of Insights", "pct": 100 },
+    { "name": "Accurate Documentation", "pct": 90 },
+    { "name": "Primary Data Collection", "pct": 90 }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "slotLabel": "SAVE FILE 1",
+  "tagline": "Research · Data · Civic Consulting",
+  "name": "Manasi Pant",
+  "email": "manasi.pant@outlook.com",
+  "linkedin": "https://www.linkedin.com/in/manasi-pant/",
+  "location": "New York, USA",
+  "experience": [
+    {
+      "role": "Associate",
+      "org": "Bennett Midland · Philadelphia, PA",
+      "dates": "2024 – 2026",
+      "bullets": [
+        "Led workstreams spanning data analysis, impact evaluation, and project management to support City, philanthropic, and non-profit clients.",
+        "Collected, vetted, and synthesized qualitative and quantitative data — including 50+ interviews and focus groups, surveys, and administrative datasets — to develop evidence-based recommendations.",
+        "Translated findings into clear, actionable insights through written deliverables, presentations, and shared dashboards, including a 100+ page published report with 26 actionable recommendations.",
+        "Maintained project trackers and coordinated workflows across internal teams and external stakeholders, ensuring alignment on timelines, deliverables, and client expectations.",
+        "Managed client relationships across City agencies, philanthropic funders, and non-profit organizations, incorporating feedback and managing shifting priorities across concurrent projects."
+      ]
+    },
+    {
+      "role": "Research and Project Manager",
+      "org": "Oxfam Indonesia & Columbia University · New York, NY",
+      "dates": "2023 – 2024",
+      "bullets": [
+        "Led a six-person interdisciplinary team analyzing Indonesia's eldercare policy landscape, coordinating interviews, focus groups, and desk research with caregivers, seniors, and policy experts across Indonesia.",
+        "Served as primary client contact with Oxfam Indonesia, incorporating feedback, communicating progress, and managing shifting priorities throughout the project lifecycle.",
+        "Synthesized qualitative and quantitative inputs into a policy brief for the Indonesian Ministry of Social Affairs, recommending demographic-responsive eldercare and caregiver-support policies.",
+        "Managed team timelines, facilitated regular check-ins, and maintained documentation ensuring all deliverables met academic and client standards."
+      ]
+    },
+    {
+      "role": "Teaching Assistant — Advanced Macroeconomic Analysis",
+      "org": "Columbia University · New York, NY",
+      "dates": "2024",
+      "bullets": [
+        "Supported graduate students in understanding calculus-based macroeconomic concepts through office hours and targeted review sessions.",
+        "Graded assignments and provided structured written feedback, identifying common conceptual gaps and flagging patterns to the professor."
+      ]
+    },
+    {
+      "role": "Quantitative Research Intern",
+      "org": "Women's World Banking · New York, NY",
+      "dates": "2023",
+      "bullets": [
+        "Conducted impact evaluations of gender-responsive financial inclusion tools by analyzing survey data across user groups to assess links between financial services and holistic empowerment outcomes.",
+        "Co-authored an impact report informing grantmaking and fund allocation decisions at Women's World Banking, published in October 2024.",
+        "Cleaned and organized large datasets and contributed to literature reviews synthesizing evidence on women's financial empowerment globally."
+      ]
+    },
+    {
+      "role": "Research Assistant",
+      "org": "Columbia University & Harvard Kennedy School · New York, NY",
+      "dates": "2023",
+      "bullets": [
+        "Assisted with research design and primary data collection for a quantitative study on the evolving opinion of U.S. citizens on gun control policies, conducted jointly by Columbia University and Harvard Kennedy School.",
+        "Supported survey instrument development, data entry, and quality checking to ensure accuracy of collected data."
+      ]
+    },
+    {
+      "role": "Senior Campaigner",
+      "org": "Jhatkaa.org · Bengaluru, India",
+      "dates": "2021 – 2022",
+      "bullets": [
+        "Led end-to-end digital advocacy campaigns on worker rights and gender equality, coordinating petition drives, social media outreach, and coalition building.",
+        "Engaged government stakeholders, community organizations, and media partners to amplify campaign reach and drive policy attention.",
+        "Drafted campaign communications, policy briefs, and press materials translating complex issues into accessible public-facing content."
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "title": "How Philadelphia's Professional Services Contracts Can Be Improved",
+      "year": "2025",
+      "publisher": "Pew Charitable Trusts",
+      "type": "Report",
+      "tags": ["POLICY", "GOVERNANCE", "URBAN", "DATA ANALYSIS"]
+    },
+    {
+      "title": "Experiencing Impact: Evidence on Financial Services and Women's Empowerment",
+      "year": "2024",
+      "publisher": "Women's World Banking",
+      "type": "Report",
+      "tags": ["GENDER", "FINANCE", "DEVELOPMENT", "IMPACT EVALUATION"]
+    },
+    {
+      "title": "An Unsuitable Profession? The Work and Lives of Women Who Work as Tour Guides in Agra, India",
+      "year": "2024",
+      "publisher": "Academic Publication",
+      "type": "Academic",
+      "tags": ["GENDER", "FIELDWORK", "INDIA", "QUALITATIVE RESEARCH"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of International Affairs",
+      "institution": "Columbia University",
+      "field": "Economics and Data Analysis",
+      "dates": "2022 – 2024",
+      "award": "Dr. Gitelson Award for Best Capstone Report contributing to international discourse on human values"
+    },
+    {
+      "degree": "Bachelor of Arts",
+      "institution": "FLAME University",
+      "field": "Psychology and Sociology",
+      "dates": "2016 – 2019",
+      "award": "Second place for Best Research Report"
+    }
+  ],
+  "skills": [
+    { "name": "Primary Data Collection", "pct": 90 },
+    { "name": "Desk Research & Literature Review", "pct": 90 },
+    { "name": "End-to-End Data Analysis", "pct": 80 },
+    { "name": "Clear Communication of Insights", "pct": 100 },
+    { "name": "Stakeholder Communications", "pct": 90 },
+    { "name": "Accurate Documentation", "pct": 90 }
+  ]
+}

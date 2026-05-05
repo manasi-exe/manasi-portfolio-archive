@@ -21,10 +21,17 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
 
 // ---- MAGNIFYING GLASS CURSOR ----
 const starCursor = document.getElementById("star-cursor");
+let _usingTouch = false;
 document.addEventListener("mousemove", (e) => {
+  _usingTouch = false;
+  starCursor.style.display = '';
   starCursor.style.left = e.clientX + "px";
   starCursor.style.top  = e.clientY + "px";
 });
+document.addEventListener("touchstart", () => {
+  _usingTouch = true;
+  starCursor.style.display = 'none';
+}, { passive: true });
 
 // ============================================================
 //  AUDIO
@@ -32,11 +39,15 @@ document.addEventListener("mousemove", (e) => {
 let audioCtx = null, masterGain = null, musicStarted = false, muted = false;
 
 function initAudio() {
-  if (audioCtx) return;
+  if (audioCtx) {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return;
+  }
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   masterGain = audioCtx.createGain();
   masterGain.gain.value = 0.07;
   masterGain.connect(audioCtx.destination);
+  if (audioCtx.state === 'suspended') audioCtx.resume();
 }
 function playTone(freq, dur, when, type = "square", vol = 1) {
   if (!audioCtx || muted) return;
@@ -337,7 +348,12 @@ function addNextStar(){
 function triggerStart(){
   if(bootDone)return;bootDone=true;
   bootRunning=false;
-  try { initAudio(); playDing(); setTimeout(startChiptune,400); } catch(e) {}
+  try {
+    initAudio();
+    const doPlay=()=>{ playDing(); setTimeout(startChiptune,400); };
+    if(audioCtx && audioCtx.state==='suspended'){ audioCtx.resume().then(doPlay).catch(doPlay); }
+    else { doPlay(); }
+  } catch(e) {}
   document.getElementById("boot-screen").style.display="none";
   document.getElementById("main-site").style.display="block";
   document.getElementById("mute-btn").style.display="block";
@@ -386,11 +402,22 @@ async function loadCMSContent(){
       const p=await profileRes.json();
       ['name','email','education','status','summary'].forEach(f=>{
         const el=document.querySelector(`[data-cms-field="${f}"]`);
-        if(el&&p[f]) el.textContent=p[f];
+        if(!el||!p[f]) return;
+        if(f==='education'){
+          const lines=p[f].split('\n').filter(l=>l.trim());
+          el.innerHTML='<ul class="edu-bullets">'+lines.map(l=>'<li>'+l.trim()+'</li>').join('')+'</ul>';
+        } else {
+          el.textContent=p[f];
+        }
       });
       const bioEl=document.getElementById('cms-bio');
       if(bioEl&&p.bio){
         bioEl.innerHTML='<p>'+mdToHtml(p.bio)+'</p>';
+      }
+      // LinkedIn URL
+      if(p.linkedinUrl){
+        const liLink=document.querySelector('a[href*="linkedin"]');
+        if(liLink) liLink.href=p.linkedinUrl;
       }
       // Resume PDF link
       const resumeLink=document.getElementById('resume-link');
@@ -410,7 +437,9 @@ async function loadCMSContent(){
       const s=await skillsRes.json();
       if(Array.isArray(s.skills)&&s.skills.length){
         SKILLS.length=0;
-        s.skills.forEach(sk=>SKILLS.push({name:sk.name,level:Number(sk.level)}));
+        s.skills.forEach(sk=>SKILLS.push({name:sk.name,desc:sk.desc||'',level:Number(sk.level)}));
+        if(s.tools) SKILLS_TOOLS=s.tools;
+        if(s.languages) SKILLS_LANGS=s.languages;
         renderSkills();
         setTimeout(animateSkillBars,400);
       }
@@ -419,7 +448,7 @@ async function loadCMSContent(){
     // ── Projects ───────────────────────────────────────────────
     if(projectsRes.ok){
       const proj=await projectsRes.json();
-      ['research','multimedia','blog','resources','features'].forEach(tab=>{
+      ['research','publications','career','features','multimedia','blog','resources'].forEach(tab=>{
         if(Array.isArray(proj[tab])&&proj[tab].length) PROJECTS_DATA[tab]=proj[tab];
       });
       renderQuestMap(activeTab);
@@ -945,11 +974,27 @@ function initXPListeners(){
 // ============================================================
 //  SKILLS
 // ============================================================
-const SKILLS=[{name:"RESEARCH",level:9},{name:"DATA ANALYSIS",level:8},{name:"POLICY WRITING",level:9},{name:"STORYTELLING",level:8},{name:"DESIGN",level:8},{name:"VIDEO EDITING",level:7},{name:"STRATEGY",level:8},{name:"PHOTOGRAPHY",level:7}];
+const SKILLS=[
+  {name:"QUANTITATIVE ANALYSIS & IMPACT EVALUATION",level:8},
+  {name:"QUALITATIVE RESEARCH & SYNTHESIS",level:9},
+  {name:"PROJECT MANAGEMENT",level:8},
+  {name:"STAKEHOLDER COORDINATION",level:9},
+  {name:"DIGITAL SYSTEMS & LOW-CODE BUILD-OUTS",level:4},
+  {name:"WRITING & EDITORIAL",level:10},
+  {name:"DATA VIZ, DASHBOARDS & REPORTING",level:7},
+  {name:"STRATEGY PLANNING & PROGRAM/SERVICE SUPPORT",level:7}
+];
+let SKILLS_TOOLS="R · STATA · Tableau · Microsoft Office & Google Suite (incl. advanced Excel) · Airtable · Notion · Asana";
+let SKILLS_LANGS="English (native) · Hindi (native)";
 
 function renderSkills(){
   const grid=document.getElementById("skills-grid"); if(!grid)return; grid.innerHTML="";
-  SKILLS.forEach(sk=>{const card=document.createElement("div");card.className="skill-card";card.innerHTML=`<div class="skill-name">${sk.name}</div><div class="skill-bar-bg"><div class="skill-bar-fill" data-level="${sk.level}" style="width:0%"></div></div><div class="skill-level">LV.${sk.level}/10</div>`;grid.appendChild(card);});
+  SKILLS.forEach(sk=>{
+    const card=document.createElement("div");
+    card.className="skill-card";
+    card.innerHTML=`<div class="skill-name">${sk.name}</div>${sk.desc?`<div class="skill-desc">${sk.desc}</div>`:''}<div class="skill-bar-bg"><div class="skill-bar-fill" data-level="${sk.level}" style="width:0%"></div></div><div class="skill-level">LV.${sk.level}/10</div>`;
+    grid.appendChild(card);
+  });
 }
 function animateSkillBars(){document.querySelectorAll(".skill-bar-fill").forEach(bar=>{setTimeout(()=>{bar.style.width=(parseInt(bar.dataset.level)/10*100)+"%";},200);});}
 
@@ -958,35 +1003,33 @@ function animateSkillBars(){document.querySelectorAll(".skill-bar-fill").forEach
 // ============================================================
 const PROJECTS_DATA={
   research:[
-    {title:"ECONOMIC DEVELOPMENT RESEARCH",tags:["RESEARCH","POLICY"],desc:"Quantitative research on economic development interventions and long-term outcomes.",status:"ONGOING",date:"2023-09"},
-    {title:"DATA ANALYSIS PRACTICUM",tags:["DATA","COLUMBIA"],desc:"Applied data analysis for international development policy.",status:"COMPLETE",date:"2023-05"},
-    {title:"POLICY BRIEF SERIES",tags:["POLICY","WRITING"],desc:"Series of policy briefs on global development challenges.",status:"ONGOING",date:"2024-02"},
-    {title:"FIELDWORK & SURVEYS",tags:["RESEARCH","FIELDWORK"],desc:"Primary data collection and analysis in emerging markets.",status:"COMPLETE",date:"2022-08"},
+    {title:"PHILADELPHIA PROFESSIONAL SERVICES CONTRACTS ANALYSIS",org:"Bennett Midland / Pew Charitable Trusts",tags:["RESEARCH","POLICY","DATA ANALYSIS"],desc:"Led mixed-methods analysis of $21B worth of professional services contracts from FY20 to January FY25, identifying structural drivers of delayed conformance. Facilitated 40+ interviews with City stakeholders and benchmarked performance against peer cities and Federal and State policies. Produced a 100+ page published report with 26 actionable recommendations.",status:"COMPLETE",date:"2025-01",link:"https://www.pew.org/en/research-and-analysis/white-papers/2025/12/how-philadelphias-professional-services-contracts-can-be-improved"},
+    {title:"INDONESIA ELDERCARE POLICY RESEARCH",org:"Oxfam Indonesia & Columbia University",tags:["RESEARCH","POLICY","INTERNATIONAL"],desc:"Led a six-person interdisciplinary team analyzing Indonesia's eldercare policy landscape. Coordinated interviews, focus groups, and desk research with caregivers, seniors, and policy experts across Indonesia. Synthesized inputs into a policy brief for the Indonesian Ministry of Social Affairs.",status:"COMPLETE",date:"2024-01"},
+    {title:"GENDER-RESPONSIVE FINANCIAL INCLUSION EVALUATION",org:"Women's World Banking",tags:["RESEARCH","GENDER","FINANCE"],desc:"Conducted impact evaluations of gender-responsive financial inclusion tools by analyzing survey data across user groups to assess links between financial services and holistic empowerment outcomes. Co-authored an impact report informing grantmaking decisions.",status:"COMPLETE",date:"2023-06",link:"https://www.womensworldbanking.org/wp-content/uploads/2024/10/Experiencing-impact-Evidence-on-financial-services-and-womens-empowerment.pdf"},
+    {title:"U.S. GUN CONTROL PUBLIC OPINION STUDY",org:"Columbia University & Harvard Kennedy School",tags:["RESEARCH","QUANTITATIVE","POLICY"],desc:"Assisted with research design and primary data collection for a quantitative study on the evolving opinion of U.S. citizens on gun control policies, conducted jointly by Columbia University and Harvard Kennedy School.",status:"COMPLETE",date:"2023-01"},
   ],
-  multimedia:[
-    {title:"VIDEO DOCUMENTARY",tags:["VIDEO","STORYTELLING"],desc:"Short-form documentary exploring communities and structural change.",status:"ONGOING",date:"2024-03"},
-    {title:"VISUAL EXPERIMENTS",tags:["ART","VIDEO"],desc:"Experimental visual work blending documentary and artistic practice.",status:"ONGOING",date:"2023-11"},
-    {title:"AUDIO STORIES",tags:["AUDIO","PODCAST"],desc:"Audio-first storytelling and podcast features.",status:"ONGOING",date:"2024-01"},
-    {title:"PHOTO SERIES",tags:["PHOTOGRAPHY","DOCUMENTARY"],desc:"Long-form documentary photography from the field.",status:"ONGOING",date:"2022-06"},
+  publications:[
+    {title:"HOW PHILADELPHIA'S PROFESSIONAL SERVICES CONTRACTS CAN BE IMPROVED",tags:["REPORT","POLICY","PEW"],desc:"Examines Philadelphia's professional services contracting system and offers 26 actionable reforms to create a more efficient, equitable, and sustainable procurement system.",status:"COMPLETE",date:"2025-01",link:"https://www.pew.org/en/research-and-analysis/white-papers/2025/12/how-philadelphias-professional-services-contracts-can-be-improved"},
+    {title:"EXPERIENCING IMPACT: EVIDENCE ON FINANCIAL SERVICES AND WOMEN'S EMPOWERMENT",tags:["REPORT","GENDER","FINANCE"],desc:"Examines how access to financial services can drive women's economic empowerment across material, cognitive, perceptual, and relational dimensions. Published by Women's World Banking, 2024.",status:"COMPLETE",date:"2024-10",link:"https://www.womensworldbanking.org/wp-content/uploads/2024/10/Experiencing-impact-Evidence-on-financial-services-and-womens-empowerment.pdf"},
+    {title:"AN UNSUITABLE PROFESSION? THE WORK AND LIVES OF WOMEN WHO WORK AS TOUR GUIDES IN AGRA, INDIA",tags:["ACADEMIC","GENDER","INDIA"],desc:"Co-authored with Prof. Juhi Sidharth (PhD, Cambridge University). Uses grounded theory to explore the role of family, care work, and societal norms in shaping the careers of women tour guides. Academic publication, 2024.",status:"COMPLETE",date:"2024-01",link:"https://www.researchgate.net/publication/382254940_Multidisciplinary_Approaches_To_Field_Learning"},
   ],
-  blog:[
-    {title:"FIELD NOTES",tags:["WRITING","BLOG"],desc:"Personal essays and dispatches from research and fieldwork.",status:"ONGOING",date:"2023-07"},
-    {title:"POLICY PERSPECTIVES",tags:["WRITING","POLICY"],desc:"Reflections and commentary on development policy.",status:"ONGOING",date:"2024-01"},
-    {title:"SIDE QUEST DIARIES",tags:["PERSONAL","BLOG"],desc:"Musings on creativity, curiosity, and life between quests.",status:"PLANNED",date:"2025-06"},
-    {title:"READING NOTES",tags:["BOOKS","WRITING"],desc:"Notes and reactions from the reading list.",status:"ONGOING",date:"2023-04"},
-  ],
-  resources:[
-    {title:"READING LIST",tags:["BOOKS","RESOURCES"],desc:"Curated reading on development economics, data, and design.",status:"ONGOING",date:"2022-12"},
-    {title:"RESEARCH TOOLS",tags:["TOOLS","DATA"],desc:"Guides and tools for researchers and consultants.",status:"PLANNED",date:"2025-03"},
-    {title:"OPEN DATASETS",tags:["DATA","OPEN"],desc:"Publicly available datasets and analysis scripts.",status:"ONGOING",date:"2023-10"},
-    {title:"LINKS & REFERENCES",tags:["RESOURCES","ARCHIVE"],desc:"Collected links, papers, and references worth keeping.",status:"ONGOING",date:"2022-10"},
+  career:[
+    {title:"ASSOCIATE — BENNETT MIDLAND",tags:["CONSULTING","DATA ANALYSIS","PROJECT MANAGEMENT"],desc:"Led workstreams spanning data analysis, impact evaluation, and project management to support City, philanthropic, and non-profit clients. Collected, vetted, and synthesized qualitative and quantitative data — including 50+ interviews — to develop evidence-based recommendations. Managed client relationships across City agencies, philanthropic funders, and non-profit organizations.",status:"COMPLETE",date:"2024-01"},
+    {title:"RESEARCH & PROJECT MANAGER — OXFAM INDONESIA & COLUMBIA UNIVERSITY",tags:["RESEARCH","PROJECT MANAGEMENT","INTERNATIONAL"],desc:"Led a six-person interdisciplinary team analyzing Indonesia's eldercare policy landscape, managing timelines and deliverables across a multi-semester engagement. Served as primary client contact, coordinating fieldwork logistics and facilitating regular team check-ins.",status:"COMPLETE",date:"2023-06"},
+    {title:"TEACHING ASSISTANT — COLUMBIA UNIVERSITY",tags:["TEACHING","ECONOMICS","EDUCATION"],desc:"Teaching Assistant for Advanced Macroeconomic Analysis at Columbia University's SIPA. Supported graduate students through structured office hours and review sessions. Graded assignments and provided written feedback with timely turnaround.",status:"COMPLETE",date:"2024-01"},
+    {title:"QUANTITATIVE RESEARCH INTERN — WOMEN'S WORLD BANKING",tags:["RESEARCH","GENDER","FINANCE"],desc:"Conducted impact evaluations of gender-responsive financial inclusion tools. Co-authored an impact report informing grantmaking and fund allocation decisions, published October 2024. Cleaned and organized large datasets and contributed to literature reviews.",status:"COMPLETE",date:"2023-01"},
+    {title:"RESEARCH ASSISTANT — COLUMBIA UNIVERSITY & HARVARD KENNEDY SCHOOL",tags:["RESEARCH","QUANTITATIVE","POLICY"],desc:"Assisted with research design and primary data collection for a quantitative study on U.S. public opinion on gun control policies. Supported survey development, data entry, and quality checking.",status:"COMPLETE",date:"2023-01"},
+    {title:"SENIOR CAMPAIGNER — JHATKAA.ORG",tags:["ADVOCACY","COMMUNICATIONS","GENDER"],desc:"Led end-to-end digital advocacy campaigns on worker rights and gender equality, coordinating petition drives, social media outreach, and coalition building across India. Drafted campaign communications, policy briefs, and press materials.",status:"COMPLETE",date:"2021-01"},
   ],
   features:[
-    {title:"FEATURED IN",tags:["PRESS","MEDIA"],desc:"Media coverage, mentions, and features from publications and organizations.",status:"ONGOING",date:"2024-06"},
-    {title:"CONFERENCE TALKS",tags:["SPEAKING","EVENTS"],desc:"Panels, presentations, and invited talks at conferences and forums.",status:"ONGOING",date:"2023-11"},
-    {title:"COLLABORATIONS",tags:["COLLAB","PARTNERSHIP"],desc:"Cross-disciplinary projects and partnerships with researchers and creators.",status:"ONGOING",date:"2024-01"},
-    {title:"AWARDS & GRANTS",tags:["RECOGNITION","FUNDING"],desc:"Scholarships, grants, and recognition received for research and creative work.",status:"COMPLETE",date:"2023-05"},
+    {title:"GUEST SPEAKER: WHAT MAKES A RESPECTABLE WOMAN?",tags:["SPEAKING","GENDER","INTERSECTIONALITY","INDIA"],desc:"Guest speaker on 'What makes a respectable woman? — An intersectional lens.' Examined how caste, class, religion, and gender intersect to define respectability norms in India. Hosted by the Rotaract Club at Delhi University.",status:"COMPLETE",date:"2023-02"},
+    {title:"GENDER EQUALITY PANELLIST: WHAT DOES FEMINISM MEAN TO GEN Z?",tags:["SPEAKING","FEMINISM","YOUTH","EVENTS"],desc:"Gender equality panellist at The Tale of Humankind — India's largest youth summit. Discussed what feminism means to Generation Z and how young people are reshaping feminist practice.",status:"COMPLETE",date:"2022-09"},
+    {title:"GUEST SPEAKER: ON INTERSECTIONAL FEMINISM",tags:["SPEAKING","FEMINISM","GENDER","EDUCATION"],desc:"Guest speaker on intersectional feminism and its relevance to contemporary social movements. Hosted by Vellore Institute of Technology.",status:"COMPLETE",date:"2022-03"},
+    {title:"PANELLIST: CARE WORK, DOMESTIC VIOLENCE & WOMEN'S MENTAL HEALTH (COVID-19)",tags:["SPEAKING","GENDER","COVID-19","POLICY","MENTAL HEALTH"],desc:"Panellist on the effects of the COVID-19 lockdown on unpaid care work, increased domestic violence, and women's mental health. Hosted by The Gender Lab.",status:"COMPLETE",date:"2021-06"},
   ],
+  multimedia:[],
+  blog:[],
+  resources:[],
 };
 const STATUS_COLORS={"COMPLETE":"#5CC840","ONGOING":"#7ECCE8","PLANNED":"#FFB060","PAUSED":"#FF8870"};
 let activeTab="research";
@@ -1113,13 +1156,29 @@ function mediaPreviewHtml(item){
   return h;
 }
 
+function openQuestDetail(title,desc,link){
+  const lb=document.getElementById('lightbox');
+  const lbContent=document.getElementById('lb-content');
+  if(!lb||!lbContent) return;
+  const titleHtml=link
+    ?'<a href="'+link+'" target="_blank" rel="noopener" class="qd-title-link">'+title+' ↗</a>'
+    :title;
+  lbContent.innerHTML='<div class="quest-detail-popup">'
+    +'<div class="qd-title">'+titleHtml+'</div>'
+    +'<div class="qd-desc">'+mdToHtml(desc)+'</div>'
+    +(link?'<a href="'+link+'" class="pixel-btn qd-visit-btn" target="_blank" rel="noopener">🔗 VISIT ▶</a>':'')
+    +'</div>';
+  lb.style.display='flex';
+}
+
 function renderQuestMap(tab){
   if(tab) activeTab=tab;
   const cv=document.getElementById("quest-map-canvas"); if(!cv)return;
   const pinsLayer=document.getElementById("quest-pins-layer"); if(!pinsLayer)return;
   pinsLayer.innerHTML="";
   const wrap=cv.parentElement;
-  const W=Math.max(wrap.offsetWidth,600);
+  const isMobile=window.innerWidth<500;
+  const W=isMobile?(wrap.offsetWidth||window.innerWidth):Math.max(wrap.offsetWidth,600);
 
   // Apply filter + sort
   let items=(PROJECTS_DATA[activeTab]||[]).slice();
@@ -1127,10 +1186,9 @@ function renderQuestMap(tab){
   items.sort((a,b)=>a.date>b.date?-1:1);
   const n=items.length;
 
-  // Dynamic height: each item needs ~185px of vertical space
-  const ITEM_SPACING=185;
-  const TOP_PAD=72;
-  const H=Math.max(580,TOP_PAD+(n>0?n-1:0)*ITEM_SPACING+280);
+  const ITEM_SPACING=isMobile?210:250;
+  const TOP_PAD=120;
+  const H=Math.max(600,TOP_PAD+(n>0?n-1:0)*ITEM_SPACING+360);
 
   cv.width=W; cv.height=H;
   wrap.style.minHeight=H+'px';
@@ -1271,7 +1329,7 @@ function renderQuestMap(tab){
   ctx.fillStyle=vig;ctx.fillRect(0,0,W,H);
 
   // ── TITLE BANNER ─────────────────────────────────────────────
-  const tabNames={research:"RESEARCH QUESTS",multimedia:"MULTIMEDIA VAULT",blog:"BLOG CHRONICLES",resources:"RESOURCE VAULT",features:"FEATURES & PRESS"};
+  const tabNames={research:"RESEARCH",publications:"PUBLICATIONS",career:"CAREER",features:"FEATURES & PRESS",multimedia:"MULTIMEDIA VAULT",blog:"BLOG CHRONICLES",resources:"RESOURCE VAULT"};
   const titleW=260,titleX=(W-titleW)/2,titleY=22;
   ctx.fillStyle='rgba(200,165,90,0.40)';ctx.fillRect(titleX-8,titleY-2,titleW+16,26);
   ctx.strokeStyle='rgba(160,120,50,0.55)';ctx.lineWidth=1.5;ctx.strokeRect(titleX-8,titleY-2,titleW+16,26);
@@ -1281,7 +1339,7 @@ function renderQuestMap(tab){
   // ── WAYPOINTS ────────────────────────────────────────────────
   const waypoints=[];
   for(let i=0;i<n;i++){
-    const xFrac=(i%2===0)?0.15:0.78;
+    const xFrac=(i%2===0)?0.08:0.86;
     const y=TOP_PAD+i*ITEM_SPACING+40;
     waypoints.push({x:W*xFrac, y});
   }
@@ -1326,20 +1384,62 @@ function renderQuestMap(tab){
     const card=document.createElement("div");
     card.className="landmark-card pixel-box";
     const leftSide=(i%2===0);
-    const offX=leftSide?'0%':'-100%';
     const dateStr=item.date?'<div class="lc-date">'+item.date+'</div>':'';
-    card.style.cssText='position:absolute;left:'+(wp.x+(leftSide?18:-18))+'px;top:'+(wp.y+24)+'px;transform:translateX('+offX+');width:220px;--lc-tx:'+offX+';';
+    let cardW,cardLeft,offX;
+    if(isMobile){
+      cardW=Math.floor(W*0.84);
+      cardLeft=Math.floor((W-cardW)/2);
+      offX='0%';
+      card.style.cssText='position:absolute;left:'+cardLeft+'px;top:'+(wp.y+24)+'px;width:'+cardW+'px;transform:none;--lc-tx:0%;';
+    } else {
+      offX=leftSide?'0%':'-100%';
+      cardW=Math.min(Math.floor(W*0.40),320);
+      if(leftSide){
+        cardLeft=Math.max(12, Math.min(wp.x+18, W-cardW-12));
+      } else {
+        cardLeft=Math.max(cardW+12, Math.min(wp.x-18, W-12));
+      }
+      card.style.cssText='position:absolute;left:'+cardLeft+'px;top:'+(wp.y+24)+'px;transform:translateX('+offX+');width:'+cardW+'px;--lc-tx:'+offX+';';
+    }
+    const titleHtml=item.link
+      ?'<a href="'+item.link+'" target="_blank" rel="noopener" class="lc-title-link">'+item.title+'</a>'
+      :item.title;
+    const fullDesc=item.desc||'';
+    const needsMore=fullDesc.length>90;
     card.innerHTML='<div class="lc-num">#'+(i+1)+'</div>'
       +mediaPreviewHtml(item)
-      +'<div class="lc-title">'+item.title+'</div>'
+      +'<div class="lc-title">'+titleHtml+'</div>'
+      +(item.org?'<div class="lc-org">'+item.org+'</div>':'')
       +'<div class="lc-tags">'+((item.tags||[]).map(t=>'<span class="tag">'+t+'</span>')).join('')+'</div>'
-      +'<p class="lc-desc">'+mdToHtml(item.desc)+'</p>'
+      +'<p class="lc-desc">'+mdToHtml(fullDesc)+'</p>'
+      +(needsMore?'<button class="lc-readmore-btn">READ MORE ▶</button>':'')
       +dateStr
-      +'<div class="lc-status" style="color:'+(STATUS_COLORS[item.status]||'#604090')+'">● '+item.status+'</div>'
-      +(item.link?'<a class="lc-media-btn lc-link" href="'+item.link+'" target="_blank" rel="noopener">🔗 VISIT ▶</a>':'');
+      +'<div class="lc-status" style="color:'+(STATUS_COLORS[item.status]||'#604090')+'">● '+item.status+'</div>';
+    if(needsMore){
+      const rmBtn=card.querySelector('.lc-readmore-btn');
+      if(rmBtn) rmBtn.addEventListener('click',e=>{
+        e.stopPropagation();
+        openQuestDetail(item.title,fullDesc,item.link||'');
+      });
+    }
     card.addEventListener('click',e=>{addStar(e.clientX,e.clientY);addXP(3,e.clientX,e.clientY);});
     pinsLayer.appendChild(card);
   });
+
+  // On mobile: restack cards based on actual rendered heights to prevent overlap
+  if(isMobile){
+    setTimeout(()=>{
+      let nextTop=64;
+      pinsLayer.querySelectorAll('.landmark-card').forEach(card=>{
+        card.style.top=nextTop+'px';
+        nextTop+=card.offsetHeight+24;
+      });
+      const newH=nextTop+60;
+      pinsLayer.style.minHeight=newH+'px';
+      wrap.style.minHeight=newH+'px';
+    },0);
+  }
+
   // Start footstep animation overlay
   startQuestMapAnim();
 }
@@ -1494,6 +1594,11 @@ function initBasketGame(){
   const gcEl = document.getElementById("garden-coins");
   if(gcEl) gcEl.textContent = coins;
   basketGameCanvas.addEventListener("click", onBasketClick);
+  basketGameCanvas.addEventListener("touchend", function(e){
+    e.preventDefault();
+    const t=e.changedTouches[0];
+    onBasketClick({clientX:t.clientX, clientY:t.clientY});
+  }, {passive:false});
   basketLoop();
 }
 
@@ -1510,8 +1615,9 @@ function onBasketClick(e){
     puppyBark=60; puppyHeart=true; puppyHeartTick=0; playWoof(); return;
   }
   const centers = [Math.round(W2*0.2), W2/2|0, Math.round(W2*0.8)];
+  const bY2 = Math.round(H2*0.30);
   for(let i = 0; i < 3; i++){
-    if(Math.abs(mx - centers[i]) < 60 && my > 20 && my < 260){
+    if(Math.abs(mx - centers[i]) < 60 && my > bY2-30 && my < bY2+170){
       if(openedBaskets.has(i)) return;
       basketAnim = { active: true, basket: i, tick: 0 };
       return;
@@ -1835,11 +1941,12 @@ function basketLoop(){
   }
 
   const centerXs=[Math.round(W*0.2),W/2|0,Math.round(W*0.8)];
+  const basketY=Math.round(H*0.30);
   const currentBaskets=getCurrentBaskets();
   centerXs.forEach((cx,i)=>{
     const isOpen=openedBaskets.has(i);
     const shake=basketAnim.active&&basketAnim.basket===i;
-    drawPicnicBasket(basketCtx,cx,30,currentBaskets[i],isOpen,shake);
+    drawPicnicBasket(basketCtx,cx,basketY,currentBaskets[i],isOpen,shake);
   });
   requestAnimationFrame(basketLoop);
 }
@@ -2025,7 +2132,21 @@ function drawBreatherDone(ctx,W,H){
   ctx.fillStyle='rgba(255,220,80,0.8)';ctx.font='28px serif';ctx.textAlign='center';ctx.fillText('✨',cx,cy+8);
 }
 
-// Resume modal
+// Resume picker
+function openResumePicker(){
+  document.getElementById("resume-picker-modal").style.display="flex";
+  playBlip();
+}
+function closeResumePicker(){
+  document.getElementById("resume-picker-modal").style.display="none";
+}
+function openResumePdf(type){
+  const urls={research:"assets/resume-research.html",pm:"assets/resume-pm.html"};
+  if(urls[type]) window.open(urls[type],"_blank");
+  playBlip();
+}
+
+// Resume modal (legacy)
 function openResume(){ document.getElementById("resume-modal").style.display="flex"; }
 function closeResume(){ document.getElementById("resume-modal").style.display="none"; }
 

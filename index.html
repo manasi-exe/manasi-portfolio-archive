@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Manasi.exe ☀️</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <title>Manasi.exe</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>" />
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
 </head>
@@ -20,7 +20,7 @@
   <button id="mute-btn" class="mute-btn" title="Toggle Music" style="display:none">🔊</button>
 
   <!-- BREATHER BUTTON (top-right) -->
-  <button id="breather-btn" class="breather-btn" onclick="openBreather()" style="display:none"><span class="breather-emoji">🌬️</span> Take a Breather</button>
+  <button id="breather-btn" class="breather-btn" onclick="openBreather()" style="display:none">🎈 Take a Breather</button>
 
   <!-- ════════════════════════════════════
        BOOT / TITLE SCREEN
@@ -134,7 +134,7 @@
 
         <div class="about-card pixel-box tape-pink">
           <h3 id="cms-about-card2-title">// BIO.TXT //</h3>
-          <p class="bio-text" id="cms-bio">&nbsp;</p>
+          <div class="bio-text" id="cms-bio">&nbsp;</div>
         </div>
 
       </div>
@@ -149,7 +149,7 @@
       </div>
       <div class="skills-grid" id="skills-grid"></div>
       <div class="resume-preview-wrap">
-        <button class="pixel-btn resume-preview-btn" onclick="openResume()">📄 PREVIEW RESUME</button>
+        <button class="pixel-btn resume-preview-btn" onclick="openResumePicker()">📄 PREVIEW RESUME</button>
       </div>
     </section>
 
@@ -162,10 +162,11 @@
       </div>
       <div class="quest-tabs">
         <button class="quest-tab active" data-tab="research">RESEARCH</button>
+        <button class="quest-tab" data-tab="publications">PUBLICATIONS</button>
+        <button class="quest-tab" data-tab="career">CAREER</button>
+        <button class="quest-tab" data-tab="features">FEATURES</button>
         <button class="quest-tab" data-tab="multimedia">MULTIMEDIA</button>
         <button class="quest-tab" data-tab="blog">BLOG</button>
-        <button class="quest-tab" data-tab="resources">RESOURCES</button>
-        <button class="quest-tab" data-tab="features">FEATURES</button>
       </div>
       <div class="quest-map-wrap">
         <canvas id="quest-map-canvas" class="quest-map-canvas"></canvas>
@@ -310,7 +311,30 @@
     <canvas id="ladder-canvas" width="80" height="2000"></canvas>
   </div>
 
-  <!-- RESUME MODAL -->
+  <!-- RESUME PICKER MODAL -->
+  <div id="resume-picker-modal" class="resume-picker-modal" style="display:none" onclick="closeResumePicker()">
+    <div class="resume-picker-inner" onclick="event.stopPropagation()">
+      <button class="breather-close" onclick="closeResumePicker()">✕</button>
+      <div class="resume-picker-title">SELECT YOUR SAVE FILE</div>
+      <div class="resume-picker-sub">choose a resume to open</div>
+      <div class="resume-save-grid">
+        <div class="save-card" onclick="openResumePdf('research')">
+          <div class="save-slot-num">── SLOT 1 ──</div>
+          <div class="save-icon">🔬</div>
+          <div class="save-title">Research &amp; Data Resume</div>
+          <div class="save-open-btn">▶ LOAD</div>
+        </div>
+        <div class="save-card" onclick="openResumePdf('pm')">
+          <div class="save-slot-num">── SLOT 2 ──</div>
+          <div class="save-icon">📋</div>
+          <div class="save-title">Project Management Resume</div>
+          <div class="save-open-btn">▶ LOAD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESUME MODAL (legacy, kept for CMS resumeUrl field) -->
   <div id="resume-modal" class="resume-modal" style="display:none">
     <div class="resume-modal-inner">
       <button class="breather-close" onclick="closeResume()">✕</button>
@@ -318,7 +342,7 @@
       <div class="resume-placeholder">
         <div class="resume-placeholder-icon">📄</div>
         <div class="resume-placeholder-text" id="cms-resume-title">Resume PDF coming soon!</div>
-        <div class="resume-placeholder-sub" id="cms-resume-sub">Upload your resume via the /admin panel and it will appear here.</div>
+        <div class="resume-placeholder-sub" id="cms-resume-sub"></div>
         <a href="#" target="_blank" class="pixel-btn resume-open-btn" id="resume-link" style="display:none">OPEN PDF ▶</a>
       </div>
     </div>

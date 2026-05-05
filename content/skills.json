@@ -1,36 +1,14 @@
 {
   "skills": [
-    {
-      "name": "QUANTITATIVE ANALYSIS & IMPACT EVALUATION",
-      "level": 8
-    },
-    {
-      "name": "QUALITATIVE RESEARCH & SYNTHESIS",
-      "level": 9
-    },
-    {
-      "name": "PROJECT MANAGEMENT",
-      "level": 8
-    },
-    {
-      "name": "STAKEHOLDER COORDINATION",
-      "level": 9
-    },
-    {
-      "name": "DIGITAL SYSTEMS & LOW-CODE BUILD-OUTS",
-      "level": 4
-    },
-    {
-      "name": "WRITING & EDITORIAL",
-      "level": 10
-    },
-    {
-      "name": "DATA VIZ, DASHBOARDS & REPORTING",
-      "level": 7
-    },
-    {
-      "name": "STRATEGY PLANNING & PROGRAM/SERVICE SUPPORT",
-      "level": 7
-    }
-  ]
+    { "name": "QUANTITATIVE ANALYSIS & IMPACT EVALUATION", "level": 8 },
+    { "name": "QUALITATIVE RESEARCH & SYNTHESIS", "level": 9 },
+    { "name": "PROJECT MANAGEMENT", "level": 8 },
+    { "name": "STAKEHOLDER COORDINATION", "level": 9 },
+    { "name": "DIGITAL SYSTEMS & LOW-CODE BUILD-OUTS", "level": 4 },
+    { "name": "WRITING & EDITORIAL", "level": 10 },
+    { "name": "DATA VIZ, DASHBOARDS & REPORTING", "level": 7 },
+    { "name": "STRATEGY PLANNING & PROGRAM/SERVICE SUPPORT", "level": 7 }
+  ],
+  "tools": "R · STATA · Tableau · Microsoft Office & Google Suite (incl. advanced Excel) · Airtable · Notion · Asana",
+  "languages": "English (native) · Hindi (native)"
 }

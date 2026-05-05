@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manasi Pant — Research &amp; Data Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pixel: "Press Start 2P", monospace;
+      --text: #2A1860; --text-2: #604090; --text-light: #9070C0;
+      --cream: #FFFBEE; --panel: #FFF8E0;
+      --yellow: #FFE048; --sun-warm: #FFA820;
+      --lavender: #C8AAFF; --blush: #FFB8CC; --mint: #90ECC0;
+      --border-purple: #C090F0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--cream); color: var(--text); font-family: Georgia, serif; font-size: 14px; line-height: 1.7; }
+
+    .page {
+      width: 100%;
+      padding: 36px 48px 56px;
+      border-left: 5px solid var(--border-purple);
+      border-right: 5px solid var(--border-purple);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .r-header { border: 4px solid var(--text); background: var(--panel); box-shadow: 7px 7px 0 var(--lavender); padding: 28px 32px 24px; margin-bottom: 32px; position: relative; text-align: center; }
+    .r-header::before { content: '★ PLAYER PROFILE ★'; font-family: var(--pixel); font-size: 10px; color: var(--text-light); letter-spacing: 3px; display: block; margin-bottom: 12px; }
+    .r-slot-badge { position: absolute; top: -16px; right: 18px; background: var(--yellow); border: 3px solid var(--text); font-family: var(--pixel); font-size: 10px; padding: 5px 12px; box-shadow: 3px 3px 0 var(--sun-warm); letter-spacing: 1px; }
+    .r-name { font-family: var(--pixel); font-size: 19px; text-shadow: 3px 3px 0 var(--blush), -1px -1px 0 var(--lavender); letter-spacing: 2px; margin-bottom: 12px; }
+    .r-tagline { font-family: var(--pixel); font-size: 10px; color: var(--text-2); letter-spacing: 1px; margin-bottom: 16px; }
+    .r-contact { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-family: var(--pixel); font-size: 10px; color: var(--text-2); }
+    .r-contact a { color: var(--text-2); }
+
+    /* SECTION */
+    .r-section { margin-bottom: 28px; }
+    .r-section-title { font-family: var(--pixel); font-size: 11px; letter-spacing: 2px; background: var(--yellow); border: 3px solid var(--text); box-shadow: 4px 4px 0 var(--sun-warm); padding: 8px 16px; display: inline-block; margin-bottom: 16px; }
+    .r-section-title::before { content: '▶ '; }
+
+    /* ENTRY */
+    .r-entry { border: 2px solid var(--border-purple); background: var(--panel); padding: 16px 18px; margin-bottom: 12px; position: relative; }
+    .r-entry::before { content: '●'; position: absolute; left: -16px; top: 16px; color: var(--border-purple); font-size: 12px; }
+    .r-entry-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 4px; margin-bottom: 5px; }
+    .r-role { font-family: var(--pixel); font-size: 11px; line-height: 1.6; }
+    .r-date { font-family: var(--pixel); font-size: 10px; color: var(--text-light); white-space: nowrap; }
+    .r-org { font-family: var(--pixel); font-size: 10px; color: var(--text-2); margin-bottom: 10px; }
+    .r-award { font-family: var(--pixel); font-size: 9.5px; color: var(--text-2); margin-top: 5px; }
+    .r-award::before { content: '🏆 '; }
+    .r-bullets { list-style: none; padding: 0; }
+    .r-bullets li { padding-left: 16px; position: relative; margin-bottom: 5px; font-size: 13.5px; line-height: 1.7; }
+    .r-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--text-2); }
+
+    /* ABILITIES — text grid */
+    .r-skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .r-skill-item { border: 2px solid var(--border-purple); background: var(--panel); padding: 10px 14px; }
+    .r-skill-item-name { font-family: var(--pixel); font-size: 10px; color: var(--text); line-height: 1.5; margin-bottom: 4px; }
+    .r-skill-item-desc { font-family: Georgia, serif; font-size: 12px; color: var(--text-2); font-style: italic; line-height: 1.5; }
+
+    /* TOOLS & LANGUAGES */
+    .r-tools-section { margin-top: 14px; border: 2px solid var(--border-purple); background: var(--panel); padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
+    .r-tools-row { display: flex; flex-direction: column; gap: 4px; }
+    .r-tools-label { font-family: var(--pixel); font-size: 10px; color: var(--text-light); letter-spacing: 1px; }
+    .r-tools-label::before { content: '▸ '; }
+    .r-tools-val { font-family: Georgia, serif; font-size: 13px; color: var(--text); line-height: 1.6; }
+
+    /* PUB TAG */
+    .r-pub-tag { display: inline-block; font-family: var(--pixel); font-size: 9.5px; background: var(--lavender); color: var(--text); border: 1px solid var(--border-purple); padding: 4px 8px; margin: 2px 2px 0 0; }
+    .r-pub-type { font-family: var(--pixel); font-size: 10px; color: var(--text-light); margin-bottom: 5px; }
+
+    /* FOOTER */
+    .r-footer { text-align: center; font-family: var(--pixel); font-size: 10px; color: var(--text-light); margin-top: 36px; letter-spacing: 2px; }
+
+    /* PRINT */
+    @media print {
+      body { background: #fff; }
+      .page { border: none; padding: 20px 32px; }
+      .r-header { box-shadow: none; }
+      .r-entry { break-inside: avoid; }
+      .r-section { break-inside: avoid; }
+    }
+
+    /* PHONE */
+    @media (max-width: 600px) {
+      .page { padding: 20px 16px 40px; border-left: 3px solid var(--border-purple); border-right: 3px solid var(--border-purple); }
+      .r-name { font-size: 14px; }
+      .r-tagline, .r-contact, .r-section-title, .r-role, .r-date, .r-org { font-size: 9px; }
+      .r-skills-grid { grid-template-columns: 1fr; }
+      .r-entry-header { flex-direction: column; }
+      .r-date { white-space: normal; }
+      .r-contact { gap: 12px; }
+    }
+
+    #loading { text-align: center; font-family: var(--pixel); font-size: 13px; color: var(--text-2); padding: 80px 0; letter-spacing: 2px; }
+  </style>
+</head>
+<body>
+<div class="page" id="page" style="display:none">
+  <div class="r-header">
+    <div class="r-slot-badge" id="r-slot"></div>
+    <div class="r-name" id="r-name"></div>
+    <div class="r-tagline" id="r-tagline"></div>
+    <div class="r-contact" id="r-contact"></div>
+  </div>
+
+  <div class="r-section">
+    <div class="r-section-title">EXPERIENCE</div>
+    <div id="experience-list"></div>
+  </div>
+
+  <div class="r-section">
+    <div class="r-section-title">SELECT PUBLICATIONS</div>
+    <div id="publications-list"></div>
+  </div>
+
+  <div class="r-section">
+    <div class="r-section-title">EDUCATION</div>
+    <div id="education-list"></div>
+  </div>
+
+  <div class="r-section">
+    <div class="r-section-title">ABILITIES</div>
+    <div class="r-skills-grid" id="skills-grid"></div>
+    <div class="r-tools-section" id="tools-section" style="display:none">
+      <div class="r-tools-row" id="tools-row" style="display:none">
+        <div class="r-tools-label">TOOLS</div>
+        <div class="r-tools-val" id="tools-val"></div>
+      </div>
+      <div class="r-tools-row" id="langs-row" style="display:none">
+        <div class="r-tools-label">LANGUAGES</div>
+        <div class="r-tools-val" id="langs-val"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="r-footer">▶ MANASI.EXE · RESEARCH &amp; DATA SAVE FILE ◀</div>
+</div>
+<div id="loading">LOADING SAVE FILE…</div>
+
+<script>
+Promise.all([
+  fetch('/content/resume-research.json').then(r => r.json()),
+  fetch('/content/skills.json').then(r => r.json())
+])
+.then(([d, sk]) => {
+  document.getElementById('r-slot').textContent = d.slotLabel || 'SAVE FILE 1';
+  document.getElementById('r-name').textContent = d.name || '';
+  document.getElementById('r-tagline').textContent = d.tagline || '';
+  document.getElementById('r-contact').innerHTML =
+    (d.email ? '<span>' + d.email + '</span>' : '') +
+    (d.linkedin ? '<span><a href="' + d.linkedin + '">' + d.linkedin.replace('https://','') + '</a></span>' : '') +
+    (d.location ? '<span>' + d.location + '</span>' : '');
+
+  // Experience
+  const expEl = document.getElementById('experience-list');
+  (d.experience || []).forEach(e => {
+    const bullets = (e.bullets || []).map(b => '<li>' + b + '</li>').join('');
+    expEl.innerHTML += '<div class="r-entry">' +
+      '<div class="r-entry-header"><div class="r-role">' + e.role + '</div><div class="r-date">' + e.dates + '</div></div>' +
+      '<div class="r-org">' + e.org + '</div>' +
+      (bullets ? '<ul class="r-bullets">' + bullets + '</ul>' : '') +
+      '</div>';
+  });
+
+  // Publications
+  const pubEl = document.getElementById('publications-list');
+  (d.publications || []).forEach(p => {
+    const tags = (p.tags || []).map(t => '<span class="r-pub-tag">' + t + '</span>').join('');
+    pubEl.innerHTML += '<div class="r-entry">' +
+      '<div class="r-entry-header"><div class="r-role">' + p.title + '</div><div class="r-date">' + p.year + '</div></div>' +
+      '<div class="r-pub-type">' + p.type + ' · ' + p.publisher + '</div>' +
+      (tags ? '<div style="margin-top:8px">' + tags + '</div>' : '') +
+      '</div>';
+  });
+
+  // Education
+  const eduEl = document.getElementById('education-list');
+  (d.education || []).forEach(e => {
+    eduEl.innerHTML += '<div class="r-entry">' +
+      '<div class="r-entry-header"><div class="r-role">' + e.degree + '</div><div class="r-date">' + e.dates + '</div></div>' +
+      '<div class="r-org">' + e.institution + ' · ' + e.field + '</div>' +
+      (e.award ? '<div class="r-award">' + e.award + '</div>' : '') +
+      '</div>';
+  });
+
+  // Skills from skills.json — text grid, no bars
+  const skEl = document.getElementById('skills-grid');
+  (sk.skills || []).forEach(s => {
+    skEl.innerHTML += '<div class="r-skill-item">' +
+      '<div class="r-skill-item-name">' + s.name + '</div>' +
+      (s.desc ? '<div class="r-skill-item-desc">' + s.desc + '</div>' : '') +
+      '</div>';
+  });
+
+  // Tools & Languages
+  const toolsSec = document.getElementById('tools-section');
+  const toolsRow = document.getElementById('tools-row');
+  const langsRow = document.getElementById('langs-row');
+  if (sk.tools) {
+    document.getElementById('tools-val').textContent = sk.tools;
+    toolsRow.style.display = '';
+    toolsSec.style.display = '';
+  }
+  if (sk.languages) {
+    document.getElementById('langs-val').textContent = sk.languages;
+    langsRow.style.display = '';
+    toolsSec.style.display = '';
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('page').style.display = 'block';
+})
+.catch(() => {
+  document.getElementById('loading').textContent = 'ERROR LOADING SAVE FILE — run via local server (npx serve)';
+});
+</script>
+</body>
+</html>

@@ -25,7 +25,8 @@ collections:
             widget: "string"
           - label: "Education"
             name: "education"
-            widget: "string"
+            widget: "text"
+            hint: "One degree per line — each line becomes a bullet point on the site."
           - label: "Status Line"
             name: "status"
             widget: "string"
@@ -37,6 +38,11 @@ collections:
             name: "bio"
             widget: "markdown"
             hint: "Rich text. Supports **bold**, *italic*, [links](url), and paragraphs."
+          - label: "LinkedIn URL"
+            name: "linkedinUrl"
+            widget: "string"
+            required: false
+            hint: "Full LinkedIn profile URL (e.g. https://www.linkedin.com/in/yourname/)"
           - label: "Resume PDF"
             name: "resumeUrl"
             widget: "file"
@@ -62,12 +68,27 @@ collections:
                 name: "name"
                 widget: "string"
                 hint: "All caps, e.g. RESEARCH"
+              - label: "Short Description"
+                name: "desc"
+                widget: "string"
+                required: false
+                hint: "One-line descriptor shown under skill name"
               - label: "Level (1-10)"
                 name: "level"
                 widget: "number"
                 value_type: "int"
                 min: 1
                 max: 10
+          - label: "Tools"
+            name: "tools"
+            widget: "string"
+            required: false
+            hint: "e.g. R · STATA · Tableau · Excel"
+          - label: "Languages"
+            name: "languages"
+            widget: "string"
+            required: false
+            hint: "e.g. English (native) · Hindi (native)"
 
   # ── QUEST LOG PROJECTS ──────────────────────────────────────────
   - name: "projects"
@@ -131,6 +152,75 @@ collections:
                 required: false
                 allow_multiple: false
                 hint: "Upload PDF, doc, or any file — shows a VIEW DOC button on the card"
+
+          - label: "Publications"
+            name: "publications"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "Tag"
+                  name: "tag"
+                  widget: "string"
+              - label: "Description"
+                name: "desc"
+                widget: "markdown"
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["ONGOING", "COMPLETE", "PLANNED", "PAUSED"]
+              - label: "Date (YYYY-MM)"
+                name: "date"
+                widget: "string"
+              - label: "External Link"
+                name: "link"
+                widget: "string"
+                required: false
+              - label: "Image"
+                name: "image"
+                widget: "image"
+                required: false
+
+          - label: "Career"
+            name: "career"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+                hint: "e.g. ASSOCIATE — BENNETT MIDLAND"
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "Tag"
+                  name: "tag"
+                  widget: "string"
+              - label: "Description"
+                name: "desc"
+                widget: "markdown"
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["ONGOING", "COMPLETE", "PLANNED", "PAUSED"]
+              - label: "Date (YYYY-MM)"
+                name: "date"
+                widget: "string"
+              - label: "External Link"
+                name: "link"
+                widget: "string"
+                required: false
+              - label: "Image"
+                name: "image"
+                widget: "image"
+                required: false
 
           - label: "Multimedia"
             name: "multimedia"
@@ -396,3 +486,131 @@ collections:
               - label: "Card Subtitle"
                 name: "cardSub"
                 widget: "string"
+
+  # ── RESUME — RESEARCH & DATA ────────────────────────────────────
+  - name: "resume_research"
+    label: "Resume — Research & Data"
+    files:
+      - name: "resume_research"
+        label: "Research & Data Resume"
+        file: "content/resume-research.json"
+        format: json
+        fields:
+          - { label: "Slot Label", name: "slotLabel", widget: "string", default: "SAVE FILE 1" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
+          - { label: "Location", name: "location", widget: "string", required: false }
+          - label: "Experience"
+            name: "experience"
+            widget: "list"
+            summary: "{{fields.role}} — {{fields.org}}"
+            fields:
+              - { label: "Role / Title", name: "role", widget: "string" }
+              - { label: "Organisation", name: "org", widget: "string" }
+              - { label: "Dates", name: "dates", widget: "string", hint: "e.g. 2024 – 2026" }
+              - label: "Bullet Points"
+                name: "bullets"
+                widget: "list"
+                field:
+                  label: "Bullet"
+                  name: "bullet"
+                  widget: "text"
+          - label: "Publications"
+            name: "publications"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Publisher", name: "publisher", widget: "string" }
+              - { label: "Type", name: "type", widget: "string", hint: "e.g. Report, Academic, Article" }
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "Tag"
+                  name: "tag"
+                  widget: "string"
+          - label: "Education"
+            name: "education"
+            widget: "list"
+            summary: "{{fields.degree}} — {{fields.institution}}"
+            fields:
+              - { label: "Degree", name: "degree", widget: "string" }
+              - { label: "Institution", name: "institution", widget: "string" }
+              - { label: "Field of Study", name: "field", widget: "string" }
+              - { label: "Dates", name: "dates", widget: "string" }
+              - { label: "Award / Honour", name: "award", widget: "string", required: false }
+          - label: "Skills"
+            name: "skills"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Skill Name", name: "name", widget: "string" }
+              - { label: "Level (0-100)", name: "pct", widget: "number", value_type: "int", min: 0, max: 100 }
+
+  # ── RESUME — PROJECT MANAGEMENT ─────────────────────────────────
+  - name: "resume_pm"
+    label: "Resume — Project Management"
+    files:
+      - name: "resume_pm"
+        label: "Project Management Resume"
+        file: "content/resume-pm.json"
+        format: json
+        fields:
+          - { label: "Slot Label", name: "slotLabel", widget: "string", default: "SAVE FILE 2" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
+          - { label: "Location", name: "location", widget: "string", required: false }
+          - label: "Experience"
+            name: "experience"
+            widget: "list"
+            summary: "{{fields.role}} — {{fields.org}}"
+            fields:
+              - { label: "Role / Title", name: "role", widget: "string" }
+              - { label: "Organisation", name: "org", widget: "string" }
+              - { label: "Dates", name: "dates", widget: "string", hint: "e.g. 2024 – 2026" }
+              - label: "Bullet Points"
+                name: "bullets"
+                widget: "list"
+                field:
+                  label: "Bullet"
+                  name: "bullet"
+                  widget: "text"
+          - label: "Publications"
+            name: "publications"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Publisher", name: "publisher", widget: "string" }
+              - { label: "Type", name: "type", widget: "string", hint: "e.g. Report, Academic, Article" }
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "Tag"
+                  name: "tag"
+                  widget: "string"
+          - label: "Education"
+            name: "education"
+            widget: "list"
+            summary: "{{fields.degree}} — {{fields.institution}}"
+            fields:
+              - { label: "Degree", name: "degree", widget: "string" }
+              - { label: "Institution", name: "institution", widget: "string" }
+              - { label: "Field of Study", name: "field", widget: "string" }
+              - { label: "Dates", name: "dates", widget: "string" }
+              - { label: "Award / Honour", name: "award", widget: "string", required: false }
+          - label: "Skills"
+            name: "skills"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Skill Name", name: "name", widget: "string" }
+              - { label: "Level (0-100)", name: "pct", widget: "number", value_type: "int", min: 0, max: 100 }

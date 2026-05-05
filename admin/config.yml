@@ -259,6 +259,47 @@ collections:
                 widget: "image"
                 required: false
 
+          - label: "Resources"
+            name: "resources"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "Tag"
+                  name: "tag"
+                  widget: "string"
+              - label: "Description"
+                name: "desc"
+                widget: "markdown"
+                hint: "Supports **bold**, *italic*, and [links](url)"
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["ONGOING", "COMPLETE", "PLANNED", "PAUSED"]
+              - label: "Date (YYYY-MM)"
+                name: "date"
+                widget: "string"
+              - label: "External Link"
+                name: "link"
+                widget: "string"
+                required: false
+              - label: "Document / Attachment"
+                name: "documentUrl"
+                widget: "file"
+                required: false
+                allow_multiple: false
+                hint: "Upload PDF, doc, or any file"
+              - label: "Image"
+                name: "image"
+                widget: "image"
+                required: false
+
   # ── SITE TEXT ───────────────────────────────────────────────────
   - name: "site_text"
     label: "Site Text"

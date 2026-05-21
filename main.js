@@ -1134,7 +1134,10 @@ function drawMapTree(ctx,x,y,s){
 function mediaPreviewHtml(item){
   let h='';
   if(item.image){
-    h+='<img class="lc-image" src="'+item.image+'" alt="'+item.title+'" loading="lazy">';
+    h+='<button class="lc-image-btn" aria-label="View full image">'
+     +'<img class="lc-image" src="'+item.image+'" alt="'+item.title+'" loading="lazy">'
+     +'<span class="lc-image-zoom">ZOOM</span>'
+     +'</button>';
   }
   if(item.videoUrl){
     const ytId=(item.videoUrl.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/)||[])[1];
@@ -1156,17 +1159,31 @@ function mediaPreviewHtml(item){
   return h;
 }
 
-function openQuestDetail(title,desc,link){
+function openQuestDetail(item){
   const lb=document.getElementById('lightbox');
   const lbContent=document.getElementById('lb-content');
   if(!lb||!lbContent) return;
+  const title=item.title||'';
+  const desc=item.desc||'';
+  const link=item.link||'';
   const titleHtml=link
     ?'<a href="'+link+'" target="_blank" rel="noopener" class="qd-title-link">'+title+' ↗</a>'
     :title;
   lbContent.innerHTML='<div class="quest-detail-popup">'
     +'<div class="qd-title">'+titleHtml+'</div>'
+    +(item.image?'<img src="'+item.image+'" alt="'+title+'" class="qd-image">':'')
     +'<div class="qd-desc">'+mdToHtml(desc)+'</div>'
     +(link?'<a href="'+link+'" class="pixel-btn qd-visit-btn" target="_blank" rel="noopener">🔗 VISIT ▶</a>':'')
+    +'</div>';
+  lb.style.display='flex';
+}
+
+function openImageDetail(src,alt){
+  const lb=document.getElementById('lightbox');
+  const lbContent=document.getElementById('lb-content');
+  if(!lb||!lbContent) return;
+  lbContent.innerHTML='<div class="image-detail-popup">'
+    +'<img src="'+src+'" alt="'+alt+'" class="qd-image-full">'
     +'</div>';
   lb.style.display='flex';
 }
@@ -1405,13 +1422,18 @@ function renderQuestMap(tab){
       ?'<a href="'+item.link+'" target="_blank" rel="noopener" class="lc-title-link">'+item.title+'</a>'
       :item.title;
     const fullDesc=item.desc||'';
-    const needsMore=fullDesc.length>90;
+    const plainDesc=fullDesc.replace(/\n+/g,' ').replace(/\s+/g,' ').trim();
+    const PREVIEW_CHARS=110;
+    const needsMore=fullDesc.length>PREVIEW_CHARS||fullDesc.includes('\n');
+    const previewText=needsMore&&plainDesc.length>PREVIEW_CHARS
+      ?plainDesc.slice(0,PREVIEW_CHARS).replace(/\s+\S*$/,'')+'…'
+      :plainDesc;
     card.innerHTML='<div class="lc-num">#'+(i+1)+'</div>'
       +mediaPreviewHtml(item)
       +'<div class="lc-title">'+titleHtml+'</div>'
       +(item.org?'<div class="lc-org">'+item.org+'</div>':'')
       +'<div class="lc-tags">'+((item.tags||[]).map(t=>'<span class="tag">'+t+'</span>')).join('')+'</div>'
-      +'<p class="lc-desc">'+mdToHtml(fullDesc)+'</p>'
+      +'<p class="lc-desc">'+previewText+'</p>'
       +(needsMore?'<button class="lc-readmore-btn">READ MORE ▶</button>':'')
       +dateStr
       +'<div class="lc-status" style="color:'+(STATUS_COLORS[item.status]||'#604090')+'">● '+item.status+'</div>';
@@ -1419,7 +1441,14 @@ function renderQuestMap(tab){
       const rmBtn=card.querySelector('.lc-readmore-btn');
       if(rmBtn) rmBtn.addEventListener('click',e=>{
         e.stopPropagation();
-        openQuestDetail(item.title,fullDesc,item.link||'');
+        openQuestDetail(item);
+      });
+    }
+    if(item.image){
+      const imgBtn=card.querySelector('.lc-image-btn');
+      if(imgBtn) imgBtn.addEventListener('click',e=>{
+        e.stopPropagation();
+        openImageDetail(item.image,item.title);
       });
     }
     card.addEventListener('click',e=>{addStar(e.clientX,e.clientY);addXP(3,e.clientX,e.clientY);});

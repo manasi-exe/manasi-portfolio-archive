@@ -201,12 +201,27 @@
     }
   ],
   "multimedia": [],
-  "blog": [],
+  "blog": [
+    {
+      "title": "Our haven",
+      "tags": [
+        "POEM",
+        "WRITING",
+        "LOVE"
+      ],
+      "desc": "When our plants sprawl as sage-like trees\n\nand we nestle by the fire with tea,\n\nwith our newest treasures from the local bookstore\n\npost a warm, home-cooked meal\n\n\nAnd as we talk into the sunset\n\nunder the roar of the nearby creek,\n\nthe honey rays and breeze are dancing\n\nin the garden you grew for me \n\n\nWhere the witty fox enriches our banter\n\nand the squirrels our carefree spree,\n\nwhere gold-crowned mushrooms sprout in clusters \n\nand I learn to befriend the bees\n\n\nWhere the cats’ wide-eyed gazes follow\n\nthe swirling fish in the pond,\n\nwhere deer teach us the language of softness\n\nAnd of patience, the heron\n\n\\\nThe night sky deepens outside our window\n\nand drapes its tapestry of stars,\n\nas slumber sinks the moonlight glitters\n\non this little haven of ours",
+      "status": "COMPLETE",
+      "date": "2025-03",
+      "image": "/assets/uploads/img_0290.jpeg"
+    }
+  ],
   "resources": [
     {
       "title": "Live reading journal",
       "tags": [
-        "Books, learning, study"
+        "BOOKS",
+        "READING",
+        "JOURNAL"
       ],
       "status": "ONGOING",
       "date": "2026-05",

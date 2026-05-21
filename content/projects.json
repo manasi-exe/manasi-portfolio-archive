@@ -9,8 +9,8 @@
       "videoUrl": "",
       "title": "PHILADELPHIA PROFESSIONAL SERVICES CONTRACTS ANALYSIS",
       "tags": [
-        "RESEARCH",
-        "POLICY",
+        "MIXED-METHODS RESEARCH",
+        "POLICY ANALYSIS",
         "DATA ANALYSIS"
       ],
       "audioUrl": "",
@@ -26,9 +26,10 @@
       "videoUrl": "",
       "title": "INDONESIA ELDERCARE POLICY RESEARCH",
       "tags": [
-        "RESEARCH",
-        "POLICY",
-        "INTERNATIONAL"
+        "MIXED-METHODS RESEARCH",
+        "POLICY ANALYSIS",
+        "CARE WORK",
+        "ELDERCARE"
       ],
       "audioUrl": "",
       "link": "https://drive.google.com/file/d/1J7YSq2HoTT6MqZw3mCoi-J61xi4MxppT/view",
@@ -50,6 +51,18 @@
       "audioUrl": "",
       "link": "https://www.womensworldbanking.org/wp-content/uploads/2024/10/Experiencing-impact-Evidence-on-financial-services-and-womens-empowerment.pdf",
       "image": ""
+    },
+    {
+      "title": "AN UNSUITABLE PROFESSION?: THE WORK & LIVES OF WOMEN WHO WORK AS TOUR GUIDES IN AGRA, INDIA",
+      "tags": [
+        "QUALITATIVE RESEARCH",
+        "GENDER",
+        "WORK & ECONOMIC OPPORTUNITY"
+      ],
+      "link": "https://www.researchgate.net/publication/382307097_Multidisciplinary_Approaches_To_Field_Learning",
+      "status": "COMPLETE",
+      "date": "2024-07",
+      "desc": "Conducted primary research, wrote the literature review, and co-authored a paper on the lives and work of women tour guides in the city of Agra. The paper uses the grounded theory of data analysis and explores the themes of (1) the role of the natal and marital family in the women’s career, (2) how women balance care work and professional duties, (3) fighting societal norms of the “ideal Indian woman”; the criticism and freedoms that come with it, and (4) recommendations to make tour guiding a more accessible field for women."
     }
   ],
   "publications": [
@@ -203,7 +216,7 @@
   "multimedia": [],
   "blog": [
     {
-      "title": "Our haven",
+      "title": "OUR HAVEN",
       "tags": [
         "POEM",
         "WRITING",
@@ -217,11 +230,12 @@
   ],
   "resources": [
     {
-      "title": "Live reading journal",
+      "title": "LIVE READING JOURNAL",
       "tags": [
         "BOOKS",
         "READING",
-        "JOURNAL"
+        "JOURNAL",
+        "REFLECTION"
       ],
       "status": "ONGOING",
       "date": "2026-05",

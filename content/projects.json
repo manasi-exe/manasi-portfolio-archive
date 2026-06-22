@@ -213,7 +213,18 @@
       "image": ""
     }
   ],
-  "multimedia": [],
+  "multimedia": [
+    {
+      "title": "HIGH PRIESTESS",
+      "date": "2026-06",
+      "image": "/assets/uploads/whatsapp-image-2026-06-22-at-7.30.25-pm.jpeg",
+      "status": "COMPLETE",
+      "tags": [
+        "DIGITAL ART",
+        "PROCREATE"
+      ]
+    }
+  ],
   "blog": [
     {
       "title": "OUR HAVEN",

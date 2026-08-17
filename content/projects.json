@@ -222,7 +222,8 @@
       "tags": [
         "DIGITAL ART",
         "PROCREATE"
-      ]
+      ],
+      "desc": "My second attempt at digital drawing."
     }
   ],
   "blog": [
@@ -239,22 +240,7 @@
       "image": "/assets/uploads/img_0290.jpeg"
     }
   ],
-  "resources": [
-    {
-      "title": "LIVE READING JOURNAL",
-      "tags": [
-        "BOOKS",
-        "READING",
-        "JOURNAL",
-        "REFLECTION"
-      ],
-      "status": "ONGOING",
-      "date": "2026-05",
-      "image": "/assets/uploads/never-stop-learningqqq.png",
-      "link": "https://dust-spandex-65f.notion.site/reading-journal-f73847921e0d4d0983f80322c585388d?source=copy_link",
-      "desc": "Leaning into my urge to go down a rabbit hole for everything I read..."
-    }
-  ],
+  "resources": [],
   "features": [
     {
       "title": "GUEST SPEAKER: WHAT MAKES A RESPECTABLE WOMAN?",
